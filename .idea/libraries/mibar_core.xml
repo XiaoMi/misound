@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="mibar-core">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/mibar-core.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

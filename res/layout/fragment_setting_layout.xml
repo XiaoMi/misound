@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/white">
+    <include android:id="@+id/actionbar" layout="@layout/actioin_bar"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/actionbar"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp">
+        <LinearLayout
+                android:orientation="vertical"
+                style="@style/SettingItem"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:text="@string/settings_woofer_volume"
+                    style="@style/SettingItemTitle"/>
+            <TextView android:id="@+id/setting_woofer_vol_info"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginBottom="6dp"
+                      android:visibility="gone"
+                      style="@style/SettingItemSummary"/>
+            <SeekBar android:id="@+id/woofer_seek"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="20dp"
+                     android:max="31"
+                     android:layout_marginLeft="-5dp"
+                     style="@style/wooferVolBar"/>
+        </LinearLayout>
+        <View style="@style/SettingItemSpace"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                style="@style/SettingItem">
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/setting_woofer_connect_tone_title"
+                    style="@style/SettingItemTitle"/>
+            <com.xiaomi.mitv.widget.MiSwitch
+                    android:layout_width="38dp"
+                    android:layout_height="22dp"
+                    android:id="@+id/woofer_connect_tone"/>
+        </LinearLayout>
+        <View style="@style/SettingItemSpace"/>
+        <LinearLayout android:orientation="horizontal"
+                      android:gravity="center_vertical"
+                      style="@style/SettingItem">
+            <LinearLayout android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                    android:orientation="vertical">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_private_mode_title"
+                        style="@style/SettingItemTitle"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/setting_private_mode_summary"
+                        style="@style/SettingItemSummary"/>
+            </LinearLayout>
+            <com.xiaomi.mitv.widget.MiSwitch
+                    android:layout_width="38dp"
+                    android:layout_height="22dp"
+                    android:id="@+id/safe_mode"/>
+        </LinearLayout>
+        <View style="@style/SettingItemSpace"/>
+        <LinearLayout style="@style/SettingItem"
+                      android:gravity="center_vertical"
+                      android:orientation="vertical">
+            <TextView android:id="@+id/device_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_device_name"
+                    style="@style/SettingItemTitle"/>
+            <TextView android:id="@+id/setting_device_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.6.8(固件v1.0.9)"
+                    style="@style/SettingItemSummary"/>
+        </LinearLayout>
+        <View style="@style/SettingItemSpace"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                style="@style/SettingItem">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_upgrade_log"
+                    style="@style/SettingItemTitle"/>
+            <TextView android:id="@+id/upgrade_log"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="none"
+                    style="@style/SettingItemSummary"/>
+        </LinearLayout>
+        <View style="@style/SettingItemSpace"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                style="@style/SettingItem">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_master_reset_title"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    style="@style/SettingItemTitle"/>
+            <Button android:id="@+id/master_rest"
+                    android:background="@drawable/btn_setting_reset"
+                    style="@style/SettingButtonItem"
+                    android:textSize="@dimen/text_size_xh_24px"
+                    android:textColor="@color/black_70"
+                    android:text="@string/setting_master_reset"/>
+        </LinearLayout>
+        <View style="@style/SettingItemSpace"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                style="@style/SettingItem">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_deviceid_title"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    style="@style/SettingItemTitle"/>
+            <TextView android:id="@+id/app_key"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="@dimen/text_size_xh_24px"
+                      android:textColor="@color/black_70"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="@color/black_60"
+            android:gravity="center"
+            android:id="@+id/loading">
+        <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     style="@style/Miprogress_bar_big"/>
+    </LinearLayout>
+
+</RelativeLayout>

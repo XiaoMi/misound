@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:gravity="center_horizontal|center_vertical"
+              android:minWidth="200dp"
+              android:layout_marginBottom="10dp"
+              android:layout_width="match_parent"
+              android:background="@drawable/home_page_bg_xiaomisound_switch_the_input_source"
+              android:layout_height="wrap_content">
+    <ProgressBar android:id="@+id/progress"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 style="@style/Miprogress_bar_big"/>
+    <Spinner android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/upgrade_version_list">
+    </Spinner>
+    <EditText android:id="@+id/version_desc"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:editable="false"
+              android:textSize="@dimen/text_size_xh_24px"
+              android:text="Loading..."
+              android:gravity="top|left"
+              android:scrollbars="vertical"
+            />
+    <Button android:id="@+id/upgrade_execute"
+            android:layout_width="@dimen/bottom_single_button_width"
+            android:layout_height="@dimen/bottom_single_button_height"
+            android:textColor="@color/black_80"
+            android:background="@drawable/btn_master_reset_right"
+            android:textSize="@dimen/text_size_xh_28px"
+            android:text="@string/upgrade_action"/>
+</LinearLayout>

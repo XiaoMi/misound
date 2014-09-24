@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#F6F6F6">
+    <FrameLayout android:id="@+id/fragment_panel" android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="@dimen/main_panel_height"/>
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/main_entry_padding_left_right"
+                    android:paddingRight="@dimen/main_entry_padding_left_right"
+                    android:paddingTop="@dimen/main_entry_padding_top">
+        <LinearLayout android:id="@+id/main_entry_eq"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_width="@dimen/main_entry_item_width"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true">
+            <ImageView android:layout_width="83dp"
+                       android:layout_height="83dp"
+                       android:src="@drawable/btn_xiaomisound_style"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/main_entry_text_padding"
+                      android:text="@string/main_entry_eq_title"
+                      android:textColor="@color/darker_gray_6c"
+                      android:textSize="@dimen/text_size_xh_24px"
+                    />
+        </LinearLayout>
+        <LinearLayout android:id="@+id/main_entry_settings"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_width="@dimen/main_entry_item_width"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true">
+            <ImageView android:layout_width="83dp"
+                       android:layout_height="83dp"
+                       android:src="@drawable/btn_xiaomisound_setting_bg"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/main_entry_text_padding"
+                      android:text="@string/main_entry_settings"
+                      android:textColor="@color/darker_gray_6c"
+                      android:textSize="@dimen/text_size_xh_24px"
+                    />
+        </LinearLayout>
+        <LinearLayout android:id="@+id/main_entry_upgrade"
+                android:orientation="vertical"
+                android:layout_below="@+id/main_entry_eq"
+                android:layout_marginTop="@dimen/main_entry_item_gap_v"
+                android:layout_width="@dimen/main_entry_item_width"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true">
+            <!--<ImageView android:layout_width="83dp"-->
+                       <!--android:layout_height="83dp"-->
+                       <!--android:src="@drawable/btn_xiaomisound_upgrade"/>-->
+            <!--<TextView android:layout_width="wrap_content"-->
+                      <!--android:layout_height="wrap_content"-->
+                      <!--android:layout_marginTop="@dimen/main_entry_text_padding"-->
+                      <!--android:text="@string/main_entry_upgrade"-->
+                      <!--android:textColor="@color/darker_gray_6c"-->
+                      <!--android:textSize="@dimen/text_size_xh_24px"-->
+                    <!--/>-->
+        </LinearLayout>
+        <LinearLayout android:id="@+id/main_entry_diagnose"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/main_entry_settings"
+                android:layout_marginTop="@dimen/main_entry_item_gap_v"
+                android:layout_width="@dimen/main_entry_item_width"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+            <ImageView android:layout_width="83dp"
+                       android:layout_height="83dp"
+                       android:src="@drawable/btn_xiaomisound_diagnose_bg"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/main_entry_text_padding"
+                      android:text="@string/main_entry_diagnose"
+                      android:textColor="@color/darker_gray_6c"
+                      android:textSize="@dimen/text_size_xh_24px"
+                    />
+        </LinearLayout>
+    </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

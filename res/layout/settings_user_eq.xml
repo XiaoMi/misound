@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <include android:id="@id/actionbar" layout="@layout/actioin_bar"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:gravity="center"
+            android:visibility="gone"
+            android:id="@+id/eq_progress">
+        <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     style="@android:style/Widget.ProgressBar"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:padding="10dp"
+            android:id="@+id/eq_settings">
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp"
+                      android:orientation="horizontal"
+                      android:gravity="center_vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:text="超低音"/>
+            <SeekBar
+                    style="@style/gainSeeker"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:max="24"
+                    android:progress="12"
+                    android:id="@+id/eq_band1"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/eq_value1" android:visibility="gone"
+                      android:text="0db"/>
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp"
+                      android:orientation="horizontal"
+                      android:gravity="center_vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:text="低音"/>
+            <SeekBar
+                    style="@style/gainSeeker"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:max="24"
+                    android:progress="12"                    
+                    android:id="@+id/eq_band2"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/eq_value2" android:visibility="gone"
+                      android:text="0db"/>
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp"
+                      android:orientation="horizontal"
+                      android:gravity="center_vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:text="中音"/>
+            <SeekBar
+                    style="@style/gainSeeker"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:max="24"
+                    android:progress="12"
+                    android:id="@+id/eq_band3"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/eq_value3" android:visibility="gone"
+                      android:text="0db"/>
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp"
+                      android:orientation="horizontal"
+                      android:gravity="center_vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:text="高音  "/>
+            <SeekBar
+                    style="@style/gainSeeker"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:max="24"
+                    android:progress="12"
+                    android:id="@+id/eq_band4"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/eq_value4"
+                      android:visibility="gone"
+                      android:text="0db"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="48dp"
+                      android:orientation="horizontal"
+                      android:gravity="center_vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:text="超高音"/>
+            <SeekBar
+                    style="@style/gainSeeker"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:max="24"
+                    android:progress="12"
+                    android:id="@+id/eq_band5"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/eq_value5" android:visibility="gone"
+                      android:text="0db"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

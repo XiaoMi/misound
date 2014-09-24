@@ -1,0 +1,2 @@
+1. add dependency jar from libs
+2. Import Module <ANDROID_SDK>/extras/android/support/v7/appcompat as sub module, depended by main module

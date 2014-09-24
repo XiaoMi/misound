@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:background="@android:color/transparent">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="28dp"
+            android:paddingRight="28dp"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_horizontal"
+                  android:text="@string/setting_reset_alert"
+                  android:textSize="@dimen/text_size_xh_28px"
+                  android:textColor="@color/black_80"
+                  android:layout_marginTop="38dp"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="33dp"
+                android:layout_marginBottom="33dp">
+            <Button android:id="@+id/master_reset_alert_cancel"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:textColor="@color/black_80"
+                      android:background="@drawable/btn_master_reset_left"
+                      android:textSize="@dimen/text_size_xh_28px"
+                      android:text="@android:string/cancel"/>
+            <Button  android:id="@+id/master_reset_alert_ok"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:textColor="@color/black_80"
+                       android:background="@drawable/btn_master_reset_right"
+                       android:textSize="@dimen/text_size_xh_28px"
+                       android:text="@string/setting_master_reset"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

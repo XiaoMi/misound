@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".UpdateActivity" >
+
+    <ProgressBar
+        android:id="@+id/update_progress"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:textAlignment="center"        
+        style="?android:attr/progressBarStyleHorizontal"/>
+    
+    <TextView
+        android:id="@+id/hello_world"
+        android:layout_below="@id/update_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
+    
+    <CheckBox android:id="@+id/check_showlog"
+        android:layout_toRightOf="@id/hello_world"
+        android:layout_below="@id/update_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_log"/>
+    
+    <Button
+        android:id="@+id/bind_service"
+        android:layout_below="@id/hello_world" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bind_service" />
+    
+    <Button
+        android:id="@+id/begin_update_service"
+        android:layout_below="@id/hello_world"
+        android:layout_toRightOf="@id/bind_service" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/begin_update_dfu" />
+    
+    <Button
+        android:id="@+id/start_bind_service"
+        android:layout_below="@id/hello_world"
+        android:layout_toRightOf="@id/begin_update_service" 
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="@string/ipc_begin_update_dfu" />
+    
+    <Button
+        android:id="@+id/fetch_gaia_version"
+        android:layout_below="@id/bind_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fetch_version" />
+    
+    <Button
+        android:id="@+id/close_connection"
+        android:layout_below="@id/fetch_gaia_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/close_connection" />
+    
+    
+    <EditText 
+        android:id="@+id/log_service"
+        android:layout_below="@id/close_connection" 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

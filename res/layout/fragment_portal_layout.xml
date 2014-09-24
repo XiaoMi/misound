@@ -1,0 +1,159 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/splash"
+    android:id="@+id/main_container"
+    tools:context="com.xiaomitv.misound_ui.ConnectBar">
+
+    <RelativeLayout
+            android:id="@+id/portal_top_view_group"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            >
+        <ImageView android:id="@+id/entry_setting"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="30dip"
+                   android:layout_marginRight="30dip"
+                   android:layout_alignParentRight="true"
+                   android:visibility="gone"
+                   android:src="@drawable/btn_more"/>
+        
+        <FrameLayout 
+            android:layout_width="40dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="30dip"
+            android:layout_marginRight="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true">
+               <ImageView android:id="@+id/mi_logo0"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:src="@drawable/mi0"/>
+               <ImageView android:id="@+id/mi_logo1"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:src="@drawable/mi1"/>                
+        </FrameLayout> 
+
+
+        <TextView
+                android:id="@+id/title"
+                android:text="@string/connect_title"
+                android:textSize="20dp"
+                android:textColor="@color/white_60"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="58dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        <TextView
+                android:id="@+id/dev_info"
+                android:textSize="20dp"
+                android:textColor="@color/white_60"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="58dp"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/title"
+                android:layout_height="wrap_content" />
+
+        <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="137dp"
+                android:layout_gravity="center_vertical"
+                android:layout_alignBottom="@+id/dev_info"
+                android:src="@drawable/search_icon"/>
+
+        <TextView
+            android:id="@+id/bottom_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="50dp"
+            android:gravity="center_horizontal"
+            android:text="请关闭小米电视以保证手机可以和音响通过蓝牙通讯"
+            android:textColor="@color/white_69"
+            android:textSize="12dp" />
+
+    </RelativeLayout>
+
+
+    
+    <LinearLayout
+        	android:id="@+id/entries"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            >
+
+        <TextView
+                android:id="@+id/button_connect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="连接小米音响"
+                android:background="@drawable/btn_def"
+                android:layout_margin="10dip"
+                android:layout_gravity="center_horizontal" 
+				android:gravity="center"
+				android:textColor="@color/white"
+                />
+
+            <TextView android:id="@+id/entry_upgrade"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="0.25"
+                       android:layout_margin="10dip"
+                       android:layout_gravity="center_horizontal" 
+                       android:gravity="center"  
+                       android:background="@drawable/btn_def"
+                       android:text="@string/portal_upgrade"
+                       android:textColor="@color/white" />
+
+            <TextView android:id="@+id/entry_qa"
+                	  android:layout_width="wrap_content"
+                	  android:layout_height="wrap_content"
+                	  android:layout_weight="0.25"
+                	  android:layout_margin="10dip"
+                      android:text="@string/portal_help"
+                      android:layout_gravity="center_horizontal"               
+                      android:background="@drawable/btn_def"
+                      android:gravity="center"
+                      android:textColor="@color/white" />
+            
+            <TextView android:id="@+id/entry_examine"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="0.25"
+                       android:layout_margin="10dip"
+                       android:layout_gravity="center_horizontal" 
+                       android:gravity="center"  
+                       android:background="@drawable/btn_def"
+                       android:text="@string/portal_examine"
+                       android:textColor="@color/white"
+                    />
+
+            <TextView android:id="@+id/entry_feedback"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="0.25"
+                       android:layout_margin="10dip"
+                       android:layout_gravity="center_horizontal" 
+                       android:gravity="center"  
+                       android:background="@drawable/btn_def"
+                       android:text="@string/fb_title"
+                       android:textColor="@color/white"
+                    />
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

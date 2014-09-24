@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="81dp"
+              android:layout_height="wrap_content">
+    <ImageView
+            android:id="@+id/eq_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"/>
+    <TextView
+            android:id="@+id/eq_name"
+            android:layout_below="@+id/eq_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/text_size_xh_24px"
+            android:textColor="@color/black_70"
+            android:gravity="bottom"
+            android:paddingTop="8dp"/>
+    <ImageView
+            android:id="@+id/eq_selector"
+            android:visibility="gone"
+            android:layout_above="@+id/eq_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sound_style_icon_xiaomisound_selected"
+            android:layout_alignParentRight="true"/>
+</RelativeLayout>

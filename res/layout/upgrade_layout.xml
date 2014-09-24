@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <ImageView android:id="@+id/main_entry_upgrade_button"
+               android:layout_width="83dp"
+               android:layout_height="83dp"
+               android:src="@drawable/btn_xiaomisound_upgrade"/>
+    <com.xiaomi.mitv.widget.RoundProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="@dimen/main_entry_text_padding"
+              android:text="@string/main_entry_upgrade"
+              android:textColor="@color/darker_gray_6c"
+              android:textSize="@dimen/text_size_xh_24px"
+            />
+</LinearLayout>

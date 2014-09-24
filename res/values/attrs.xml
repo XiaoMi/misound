@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundProgressBar" >
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="max" format="integer"></attr>
+        <attr name="progressBg" format="reference"/>
+        <attr name="progress" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="RoundSeekBar">
+        <attr name="thumb" format="reference"/>
+        <attr name="thumbWidth" format="dimension"/>
+        <attr name="thumbHeight" format="dimension"/>
+        <attr name="progressBg2" format="reference"/>
+        <attr name="progress2" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="RoundAnimationView">
+        <attr name="color" format="color"/>
+        <attr name="beginTransparent" format="integer"/>
+        <attr name="endTransparent" format="integer"/>
+        <attr name="stepGap" format="integer"/>
+        <attr name="img" format="reference"/>
+        <attr name="imgWidth" format="dimension"/>
+        <attr name="imgHeight" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="GifView">
+        <attr name="gif" format="reference"/>
+    </declare-styleable>
+</resources>

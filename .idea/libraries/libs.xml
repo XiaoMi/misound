@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/android-support-v7-appcompat.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/galaxy-sdk-android-1.0.0_140124_00.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/xiaomi_sdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gson-2.2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-async-http-1.4.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/umeng-analytics-v5.2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/umeng-update-v2.4.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/umeng-fb-v4.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

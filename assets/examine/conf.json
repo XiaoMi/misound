@@ -1,0 +1,6 @@
+[
+     {id:"1",title:"音响连接", questions:[{id:"11", title:"手机和音响连接不上", fixes:[{id:"111",img:[1_1_1_1.png,1_1_1_2.png,1_1_1_3.png]},{id:"112",img:[1_1_2.png]},{id:"113",img:[1_1_3.png]},{id:"114",img:[1_1_4.png]}]}, {id:"12", title:"条形音响同低音炮连接不上", fixes:[{id:"121",img:[1_2_1.png]},{id:"122",img:[1_2_2.png]},{id:"123",img:[1_2_3.png]}]}, {id:"13", title:"音响不想被其他人连接", fixes:[{id:"131",img:[1_3_1.png]},{id:"132",img:[1_3_2_1.png,1_3_2_2.png]}]}]},
+     {id:"2",title:"音响没有声音", questions:[{id:"21", title:"检查spdif线是否插好", fixes:[{id:"211",img:[2_1_1.png]},{id:"212",img:[2_1_2_1.png,2_1_2_2.png]},{id:"213",img:[2_1_3.png]}]}, {id:"22", title:"蓝牙连接音响无声音", fixes:[{id:"221",img:[2_2_1.png]},{id:"222",img:[2_2_2.png]},{id:"223",img:[2_2_3.png]}]},{id:"23", title:"模拟输入线无声音", fixes:[{id:"231",img:[2_3_1.png]},{id:"232",img:[2_3_2.png]},{id:"233",img:[2_3_3.png]}]}, {id:"24", title:"低音炮无声音", fixes:[{id:"241",img:[2_4_1.png]},{id:"242",img:[2_4_2.png]}]}]},
+     {id:"3",title:"音响音质", questions:[{id:"31", title:"音响音质问题", fixes:[{id:"311",img:[3_1_1.png]},{id:"312",img:[3_1_2.png]},{id:"313",img:[3_1_3.png]}]}]},
+     {id:"4",title:"音响升级", questions:[{id:"41", title:"手机客户端连接音响失败", fixes:[{id:"411",img:[4_1_1.png]},{id:"412",img:[4_1_2_1.png, 4_1_2_2.png]}]}]}
+]

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res/com.xiaomi.mitv.soundbarapp"
+                android:paddingLeft="@dimen/main_panel_padding_l_r"
+                android:paddingRight="@dimen/main_panel_padding_l_r"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/main_panel"
+                android:background="@drawable/home_page_bg_xiaomisound_standard">
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+        <TextView android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="@dimen/text_size_xh_28px"
+                  android:textColor="@color/white"
+                  android:gravity="center_horizontal"
+                  android:layout_alignParentTop="true"
+                  android:text="@string/main_panel_title"
+                  android:paddingTop="12dp"
+                  android:id="@+id/main_panel_title_id"/>
+        <ImageView android:id="@+id/main_panel_safety_status"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentTop="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginTop="9dp"
+                   android:layout_marginRight="14dp"
+                   android:visibility="gone"
+                   android:src="@drawable/ic_safety"/>
+    </RelativeLayout>
+    <RelativeLayout
+            android:layout_width="@dimen/main_panel_vol_seeker_width"
+            android:layout_height="@dimen/main_panel_vol_seeker_height"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+        <com.xiaomi.mitv.widget.RoundSeekBar
+                android:id="@+id/main_panel_vol_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:progressBg="@drawable/home_page_pic_pic_xiaomisound_circle_a"
+                app:progress="@drawable/home_page_pic_pic_xiaomisound_circle_b"
+                app:progressBg2="@drawable/home_page_pic_volume_control_a"
+                app:progress2="@drawable/home_page_pic_volume_control_b"
+                app:max="31"
+                app:thumb="@drawable/home_page_button_xiaomisound_standard"
+                app:thumbWidth="@dimen/main_panel_thumb_w"
+                app:thumbHeight="@dimen/main_panel_thumb_h"/>
+        <View android:layout_width="10dp" android:layout_height="65dp"
+              android:id="@+id/padding" android:layout_alignParentBottom="true"/>
+        <Button android:id="@+id/main_panel_input_source"
+                android:layout_width="@dimen/main_panel_source_bt_w"
+                android:layout_height="@dimen/main_panel_source_bt_h"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_xh_24px"
+                android:text="@string/input_source_none"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/padding"
+                android:background="@drawable/btn_input_source"/>
+        <ImageView
+                android:id="@+id/main_panel_vol_wave_static"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_page_pic_xiaomisound_audio"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp"
+                android:layout_above="@id/main_panel_input_source"/>
+        <com.xiaomi.mitv.widget.GifView
+                android:id="@+id/main_panel_vol_wave"
+                android:layout_width="100dp"
+                android:layout_height="55dp"
+                app:gif="@drawable/wave"
+                android:layout_marginBottom="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@id/main_panel_input_source"/>
+        <TextView  android:visibility="gone"
+                   android:id="@+id/main_panel_vol_val_title"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginBottom="8dp"
+                   android:text="@string/main_panel_vol_title"
+                   android:textColor="@color/white"
+                   android:textSize="@dimen/text_size_xh_28px"
+                   android:layout_above="@id/main_panel_input_source"/>
+        <TextView  android:visibility="gone"
+                   android:id="@+id/main_panel_vol_val"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginBottom="0dp"
+                   android:text="75%"
+                   android:textColor="@color/white"
+                   android:textSize="@dimen/text_size_xh_75px"
+                   android:layout_above="@id/main_panel_vol_val_title"/>
+    </RelativeLayout>
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:layout_alignParentBottom="true">
+        <TextView android:id="@+id/main_panel_eq_style"
+                  android:layout_width="wrap_content"
+                  android:text="@string/main_panel_eq_style_f"
+                  android:textSize="@dimen/text_size_xh_24px"
+                  android:textColor="@color/white"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:layout_alignParentBottom="true"/>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+            <ImageView android:visibility="gone"
+                    android:id="@+id/main_panel_no_woofer_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_page_icon_xiaomisound_not_connect"/>
+            <ProgressBar android:id="@+id/main_panel_connect_woofer_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    style="@style/Miprogress_bar_small"/>
+            <LinearLayout android:id="@+id/main_panel_woofer_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/main_panel_woofer_vol_info"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:text="@string/main_panel_woofer_vol"
+                    android:textSize="@dimen/text_size_xh_24px"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"/>
+            <RatingBar
+                    android:id="@+id/main_panel_woofer_vol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="10"
+                    android:rating="1"
+                    style="@style/wooferRatingBar"
+                    android:layout_marginLeft="9dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

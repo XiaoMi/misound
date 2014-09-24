@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res/com.xiaomi.mitv.soundbarapp"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/search_bg">
+    <com.xiaomi.mitv.widget.RoundAnimationView
+            android:id="@+id/discovery_animation"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/connecting_animation_height"
+            app:color="@color/white"
+            app:beginTransparent="25"
+            app:endTransparent="5"
+            app:stepGap="50"
+            app:img="@drawable/search_icon_xiaomisound_box"
+            />
+    <LinearLayout android:id="@+id/connecting_panel"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:visibility="visible"
+            android:gravity="center_horizontal|top">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="@dimen/text_size_xh_28px"
+                  android:text="@string/connecting_prompt_discovery"
+                  android:textColor="@color/white"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="8dp"
+                  android:textSize="@dimen/text_size_xh_24px"
+                  android:text="@string/connecting_prompt_helper"
+                  android:textColor="@color/white_fec899"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/connecting_failure_panel"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|top">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="@dimen/text_size_xh_28px"
+                  android:textColor="@color/white"
+                  android:text="@string/connecting_prompt_failure"/>
+        <Button android:id="@+id/connect_try"
+                android:layout_width="@dimen/bottom_single_button_width"
+                android:layout_height="@dimen/bottom_single_button_height"
+                android:layout_marginTop="28dp"
+                android:text="@string/connecting_bt_retry"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_xh_24px"
+                android:background="@drawable/btn_reconnect"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f6f6f6"
+    android:orientation="vertical">
+
+    <include android:id="@id/actionbar" layout="@layout/actioin_bar"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="21dp">
+        <EditText
+                android:id="@+id/msg"
+                android:layout_marginTop="21dp"
+                android:layout_width="match_parent"
+                android:layout_height="178dp"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:gravity="top|left"
+                android:textColorHint="@color/black_20"
+                android:textSize="@dimen/text_size_xh_24px"
+                android:hint="@string/fb_msg"
+                android:singleLine="false"
+                android:background="@drawable/feedback_bg"
+                android:inputType="textMultiLine" />
+        <requestFocus />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="40dp"
+                      android:orientation="horizontal"
+                      android:gravity="center_vertical"
+                      android:layout_marginBottom="20dp">
+            <TextView android:layout_width="96dp"
+                      android:layout_height="40dp"
+                      android:textColor="@color/black_50"
+                      android:background="@drawable/feedback_bg_left"
+                      android:textSize="@dimen/text_size_xh_24px"
+                      android:gravity="center"
+                      android:text="@string/fb_hint_phone"/>
+            <EditText
+                    android:id="@+id/phone"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black_80"
+                    android:background="@drawable/feedback_bg_right"
+                    android:textSize="@dimen/text_size_xh_24px"
+                    android:text=""/>
+        </LinearLayout>
+        <TextView
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_feedback_submit"
+                android:gravity="center"
+                android:text="@string/fb_submit"
+                android:textColor="@color/white"
+                android:layout_marginBottom="30dp" />
+    </LinearLayout>
+</LinearLayout>

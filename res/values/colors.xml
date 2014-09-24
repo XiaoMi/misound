@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#FFFFFF</color>
+    <color name="BLACK">#000000</color>
+    <color name="darker_gray">#b8b8b8</color>
+    <color name="light_gray">#d8d8d8</color>
+
+    <color name="white_69">#B0FFFFFF</color>
+    <color name="white_60">#99FFFFFF</color>
+    <color name="white_50">#80FFFFFF</color>
+    <color name="white_90">#E6FFFFFF</color>
+    <color name="white_30">#4DFFFFFF</color>
+
+    <color name="black_20">#c2c2c2</color>
+    <color name="black_60">#99000000</color>
+    <color name="black_50">#959595</color>
+    <color name="black_70">#6c6c6c</color>
+    <color name="black_80">#B0000000</color>
+
+    <color name="connect_ok_bg">#333333</color>
+    <color name="separator">#13000000</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="white_fec899">#fec899</color>
+    <color name="darker_gray_6c">#6c6c6c</color>
+    <color name="orange">#c73e14</color>
+    <color name="black_6a6a6a">#6a6a6a</color>
+    <color name="main_bg_color">@color/white</color>
+    <color name="failure">#F0c73e14</color>
+    <color name="successful">#F00b65ca</color>
+    <color name="blue_darker">#687de4</color>
+</resources>

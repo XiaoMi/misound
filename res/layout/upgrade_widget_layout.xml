@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res/com.xiaomi.mitv.soundbarapp"
+              android:orientation="vertical"
+              android:gravity="center_horizontal"
+              android:layout_width="@dimen/main_entry_item_width"
+              android:layout_height="wrap_content">
+    <RelativeLayout android:id="@+id/upgrade_button"
+            android:orientation="vertical"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:background="@drawable/btn_xiaomisound_upgrade">
+        <com.xiaomi.mitv.widget.RoundProgressBar
+                android:id="@+id/upgrade_main_progress_bar"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:visibility="gone"
+                app:progressBg="@drawable/home_page_button_xiaomisound_upgrade_progress_not_selected"
+                app:progress="@drawable/home_page_button_xiaomisound_upgrade_progress"
+                app:max="100"/>
+        <ProgressBar android:id="@+id/upgrade_checking_progress"
+                     android:visibility="gone"
+                     android:layout_width="27dp"
+                     android:layout_height="27dp"
+                     android:layout_centerInParent="true"
+                     android:indeterminateDrawable="@drawable/progress_bar_upgarde"/>
+        <TextView android:id="@+id/upgrade_progres_text"
+                  android:layout_width="wrap_content"
+                  android:textSize="@dimen/text_size_xh_40px"
+                  android:textColor="@color/blue_darker"
+                  android:layout_centerInParent="true"
+                  android:visibility="gone"
+                  android:text="0%"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:id="@+id/upgrade_reminder"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:visibility="gone"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentTop="true"
+                   android:src="@drawable/home_page_icon_xiaomisound_upgrade_remind"/>
+    </RelativeLayout>
+    <TextView
+            android:id="@+id/upgarde_status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/main_entry_text_padding"
+            android:text="@string/main_entry_upgrade"
+            android:textColor="@color/darker_gray_6c"
+            android:textSize="@dimen/text_size_xh_24px"/>
+</LinearLayout>

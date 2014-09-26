@@ -1,7 +1,6 @@
 package com.xiaomi.mitv.soundbarapp.upgrade;
 
 import android.content.Context;
-import android.util.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,6 +53,15 @@ public class FirmwareZipFile {
                 }
                 bos.flush();
                 bos.close();
+
+                //check md5
+//                if(digester != null) {
+//                    byte[] md5 = digester.digest();
+//                    Properties manifest = unzipManifest(zipFile, ZIP_MANIFEST);
+//                    if(!HttpRequest.Base64.encodeBytes(md5).equalsIgnoreCase(manifest.getProperty("md5"))){
+//                        return false;
+//                    }
+//                }
                 mDufFile = dfuFile;
             }
         } catch (IOException e) {

@@ -124,12 +124,6 @@ public class MainActivity2 extends FragmentActivity implements View.OnClickListe
                 mNoSourceNotified = true;
                 mSettings.setEnabled(true);
                 mEQEntry.setEnabled(true);
-
-                if (!mPanel.isSourceReady()) {
-                    String title = getString(R.string.main_no_source_alert);
-                    String msg = getString(R.string.main_no_source);
-                    showAlert(title, msg, false);
-                }
             }
         }
     }

@@ -236,7 +236,7 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
             @Override
             protected void onPreExecute() {
                 ((View)findViewById(R.id.main_panel_no_woofer_hint)).setVisibility(View.GONE);
-                mWooferInfo.setTextColor(getResources().getColor(R.color.white));
+//                mWooferInfo.setTextColor(getResources().getColor(R.color.white));
                 ((View)findViewById(R.id.main_panel_connect_woofer_progress)).setVisibility(View.VISIBLE);
                 mWooferInfo.setText(R.string.main_panel_woofer_connecting);
             }
@@ -258,7 +258,7 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
                     ((View)findViewById(R.id.main_panel_no_woofer_hint)).setVisibility(View.VISIBLE);
                     ((View)findViewById(R.id.main_panel_connect_woofer_progress)).setVisibility(View.GONE);
                     mWooferInfo.setText(R.string.main_panel_no_woofer);
-                    mWooferInfo.setTextColor(Color.RED);
+//                    mWooferInfo.setTextColor(Color.RED);
                 }
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -353,14 +353,14 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
                     mWooferInfo.setOnClickListener(null);
                     ((View)findViewById(R.id.main_panel_no_woofer_hint)).setVisibility(View.GONE);
                     mWooferInfo.setText(R.string.main_panel_woofer_vol);
-                    mWooferInfo.setTextColor(getResources().getColor(R.color.white));
+//                    mWooferInfo.setTextColor(getResources().getColor(R.color.white));
                     int wooferVol = mBaseInfo.mSubwoofer.volumeOfSource(mBaseInfo.mAutoRouting.audio_source);
                     mWooferVol.setVisibility(View.VISIBLE);
                     mWooferVol.setRating(wooferVol * 10 / MAX_VOL);
                 } else {
                     ((View)findViewById(R.id.main_panel_no_woofer_hint)).setVisibility(View.VISIBLE);
                     mWooferInfo.setText(R.string.main_panel_no_woofer);
-                    mWooferInfo.setTextColor(Color.RED);
+//                    mWooferInfo.setTextColor(Color.RED);
                     mWooferInfo.setOnClickListener(PanelFragment.this);
                     mWooferVol.setVisibility(View.GONE);
                 }

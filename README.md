@@ -32,7 +32,7 @@ may need to read it before you enhancement.
 
 ## Hareware self-diagnosis
 
-<img src="https://raw.githubusercontent.com/XiaoMi/misound/master/help/diagnosis.jpg/">
+<img src="https://raw.githubusercontent.com/XiaoMi/misound/master/help/diagnosis.jpg"/>
 
 ## Download APK
 <p>Please search XiaoMi App Store by name "小米音响"</p>

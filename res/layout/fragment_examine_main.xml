@@ -23,8 +23,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/examine_category_title"
-                    android:textSize="@dimen/text_size_xh_24px"
-                    android:textColor="@color/black_50"
+                    android:textSize="@dimen/text_size_xh_28px"
+                    android:textColor="@color/font_gray_normal"
                     android:lineSpacingExtra="1.64px"
                     android:layout_gravity="center_horizontal"/>
             <RelativeLayout
@@ -84,20 +84,18 @@
         <LinearLayout
                 android:id="@+id/question_list_container"
                 android:orientation="vertical"
-                android:layout_marginLeft="13dp"
-                android:layout_marginRight="13dp"
                 android:layout_gravity="center_horizontal|top"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:background="#f6f6f6"
                 android:visibility="gone">
             <LinearLayout
                     android:id="@+id/question_list"
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal|top"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1">
+                    android:layout_height="fill_parent">
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -128,14 +126,14 @@
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="@string/diagnosis_fix_confirm"
-                      android:textColor="#959595"
+                      android:textColor="@color/font_gray_normal"
                       android:textSize="@dimen/text_size_xh_24px"
                       android:layout_marginBottom="27dp"/>
             <Button android:id="@+id/fixed"
                     android:layout_width="240dp"
                     android:layout_height="40dp"
                     android:text="@string/diagnosis_fixed"
-                    android:textColor="@color/darker_gray_6c"
+                    android:textColor="@color/font_gray_normal"
                     android:textSize="@dimen/text_size_xh_24px"
                     android:layout_marginBottom="27dp"
                     android:background="@drawable/btn_def"/>
@@ -143,7 +141,7 @@
                     android:layout_width="240dp"
                     android:layout_height="40dp"
                     android:text="@string/diagnosis_next_fix"
-                    android:textColor="@color/darker_gray_6c"
+                    android:textColor="@color/font_gray_normal"
                     android:textSize="@dimen/text_size_xh_24px"
                     android:background="@drawable/btn_def"
                     />
@@ -154,8 +152,7 @@
                   android:id="@+id/examine_loading"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
-                  android:gravity="center"
-                  android:layout_weight="1">
+                  android:gravity="center">
         <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"
                      style="@style/Miprogress_bar_big"/>
     </LinearLayout>

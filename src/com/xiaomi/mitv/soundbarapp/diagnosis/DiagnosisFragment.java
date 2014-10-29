@@ -42,7 +42,7 @@ public class DiagnosisFragment extends BaseFragment implements View.OnClickListe
         return new DiagnosisFragment(listener);
     }
 
-
+    public DiagnosisFragment(){}
     private DiagnosisFragment(OnListener listener) {
         mListener = listener;
     }

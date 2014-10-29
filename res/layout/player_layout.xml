@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="60.5dp"
+               android:background="@drawable/home_page_bar_pic">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="2dp">
+        <ProgressBar android:id="@+id/player_seeker"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentTop="true"
+                 style="@style/playerProgress"/>
+        <TextView android:id="@+id/player_seeker_time"
+                  android:textColor="@color/black_20"
+                  android:textSize="@dimen/text_size_xh_24px"
+                  android:layout_alignParentLeft="true"
+                  android:layout_below="@id/player_seeker"
+                  android:visibility="gone"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+        <TextView android:id="@+id/player_seeker_duration"
+                  android:textColor="@color/black_20"
+                  android:textSize="@dimen/text_size_xh_24px"
+                  android:layout_alignParentRight="true"
+                  android:layout_below="@id/player_seeker"
+                  android:visibility="gone"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <LinearLayout android:layout_width="match_parent" android:baselineAligned="false"
+                    android:layout_height="0dp" android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingTop="9dp"
+                    android:paddingLeft="14dp"
+                    android:paddingBottom="9dp"
+                    android:paddingRight="14dp">
+        <RelativeLayout android:layout_width="40.5dp" android:id="@+id/player_alum_container"
+                   android:layout_height="40.5dp"
+                   android:padding="0.5dp"
+                   android:layout_marginRight="10dp"
+                   android:background="@drawable/list_music_cover_bg">
+            <ImageView android:id="@+id/player_album_logo"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:scaleType="centerInside"
+                       android:layout_centerInParent="true"
+                       android:src="@drawable/list_music_cover"/>
+        </RelativeLayout>
+        <LinearLayout android:orientation="vertical"
+                android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content">
+            <TextView android:id="@+id/player_trace_name"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="left"
+                      android:text="@string/player_select_song"
+                      android:textColor="@color/font_black_normal"
+                      android:ellipsize="end"
+                      android:singleLine="true"
+                      android:textSize="@dimen/text_size_xh_28px"/>
+            <TextView android:id="@+id/player_artist"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:ellipsize="end"
+                      android:singleLine="true"
+                      android:layout_gravity="left"
+                      android:text=""
+                      android:textColor="@color/font_gray_normal"
+                      android:textSize="@dimen/text_size_xh_24px"/>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+            <ImageView
+                    android:id="@+id/player_pause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_media_play"
+                    android:layout_marginRight="14dp"
+                    android:scaleType="center"/>
+            <ImageView
+                    android:id="@+id/player_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_media_next"
+                    android:scaleType="center"/>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent"
+                          android:paddingLeft="14dp"
+                          android:id="@+id/player_list_container">
+            <View android:layout_width="0.5dp" android:layout_height="43dp" android:background="@color/separator2"/>
+            <ImageView android:id="@+id/player_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_media_list"
+                    android:layout_marginLeft="14dp"
+                    android:scaleType="center"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,34 +1,34 @@
 package com.xiaomi.mitv.soundbarapp;
 
 import android.app.AlertDialog;
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
-import android.widget.Toast;
 import com.xiaomi.market.sdk.XiaomiUpdateAgent;
 import com.xiaomi.mitv.soundbar.DefaultMisoundDevice;
 import com.xiaomi.mitv.soundbar.bluetooth.A2dpProfile;
+import com.xiaomi.mitv.soundbar.protocol.TraceInfo0x816;
+import com.xiaomi.mitv.soundbar.provider.SoundBarORM;
+import com.xiaomi.mitv.soundbarapp.fragment.MainEntryFragment;
 import com.xiaomi.mitv.soundbarapp.fragment.PanelFragment;
-import com.xiaomi.mitv.soundbarapp.upgrade.UpgradeFragment;
+import com.xiaomi.mitv.soundbarapp.player.PlayerFragment;
 
 /**
  * Created by chenxuetong on 8/20/14.
  */
-public class MainActivity2 extends FragmentActivity implements View.OnClickListener, PanelFragment.InitListener {
+public class MainActivity2 extends FragmentActivity implements PanelFragment.PanelListener, PlayerFragment.OnPlayerStateListener{
     private static final String PANEL_TAG = "panel";
-    private static final String UPGRADE_TAG = "upgarde";
-
-    private View mEQEntry;
-    private View mSettings;
-    private View mUpgrade;
-    private View mDiagnosis;
+    private static final String ENTRY_WITH_PLAYER_TAG = "entry_player";
+    private static final String ENTRY_TAG = "entry";
 
     private PanelFragment mPanel;
+    private MainEntryFragment mEntries;
     private boolean mNoSourceNotified = false;
+    private boolean mPhoneConnected2Bar = false;
     public static void go(Context context){
         Intent i = new Intent(context, MainActivity2.class);
         context.startActivity(i);
@@ -51,42 +51,15 @@ public class MainActivity2 extends FragmentActivity implements View.OnClickListe
         }
         mPanel.setInitListener(this);
 
-        Fragment upgrade = getSupportFragmentManager().findFragmentByTag(UPGRADE_TAG);
-        if(upgrade==null){
-            upgrade = new UpgradeFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_entry_upgrade, upgrade, UPGRADE_TAG)
-                    .commit();
-        }
-        buildUi();
+        mEntries = showDefaultEntries(false);
 
         XiaomiUpdateAgent.update(this);
     }
 
-    private void buildUi(){
-        mSettings = findViewById(R.id.main_entry_settings);
-        mSettings.setOnClickListener(this);
-        mEQEntry = findViewById(R.id.main_entry_eq);
-        mEQEntry.setOnClickListener(this);
-        mDiagnosis = findViewById(R.id.main_entry_diagnose);
-        mDiagnosis.setOnClickListener(this);
-    }
-
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.main_entry_upgrade:
-                break;
-            case R.id.main_entry_settings:
-                onSettings();
-                break;
-            case R.id.main_entry_eq:
-                onEqEntry();
-                break;
-            case R.id.main_entry_diagnose:
-                WrapperActivity.go(this, WrapperActivity.FRAGMENT_DIAGNOSIS);
-                break;
-        }
+    protected void onDestroy() {
+        super.onDestroy();
+        A2dpProfile.close();
     }
 
     @Override
@@ -94,7 +67,7 @@ public class MainActivity2 extends FragmentActivity implements View.OnClickListe
         super.onBackPressed();
         new DefaultMisoundDevice(this).release();
         A2dpProfile.close();
-        android.os.Process.killProcess(android.os.Process.myPid());
+//        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     private void showAlert(String title, String msg, final boolean exit) {
@@ -112,42 +85,98 @@ public class MainActivity2 extends FragmentActivity implements View.OnClickListe
     }
 
     @Override
-    public void onPanelInitFinished() {
+    public void onPanelRefreshed(TraceInfo0x816 info) {
+        mEntries = setupEntryFragment(info);
+        mEntries.setSourceReady(BarInfoUtils.haveSource(info));
+
+//        if(!isPhoneConnected2Bar()){
+//            Fragment player = getSupportFragmentManager().findFragmentByTag(ENTRY_WITH_PLAYER_TAG);
+//            if(player != null) {
+//                PlayerFragment playerFragment = (PlayerFragment) player;
+//                playerFragment.stopMusic();
+//            }
+//        }
+    }
+
+    @Override
+    public void onMusicPlayState(boolean playing) {
+        refreshDeviceInfoDelay(5000);
+    }
+
+    @Override
+    public void onMusicChanged() {}
+
+    public boolean isPhoneConnected2Bar(){
+        return mPhoneConnected2Bar;
+    }
+
+    private MainEntryFragment setupEntryFragment(TraceInfo0x816 info){
+        A2dpProfile thisPhone = new A2dpProfile(this);
+        BluetoothDevice bar = A2dpProfile.getBarDevice(this);
+        mPhoneConnected2Bar = BarInfoUtils.isA2dpConnected(info) && thisPhone.isConnected(bar);
+
         if(mPanel!=null && !mNoSourceNotified){
             if(!mPanel.supportNewUi()) {
                 mNoSourceNotified = true;
+                mEntries.enableSettings(false);
+                mEntries.enableEq(false);
+
                 String msg = "音响音效和设置功能需要固件4.0.4以上版本！";
-                mSettings.setEnabled(false);
                 showAlert("提示", msg, false);
-                mEQEntry.setEnabled(false);
             }else {
-                mNoSourceNotified = true;
-                mSettings.setEnabled(true);
-                mEQEntry.setEnabled(true);
+                mEntries.enableSettings(true);
+                mEntries.enableEq(true);
             }
         }
+        return mEntries;
     }
 
-    public void onSettings(){
-        if(mSettings.isEnabled()) {
-            boolean sourceReady = mPanel.isSourceReady();
-            WrapperActivity.go(this, WrapperActivity.FRAGMENT_SETTINGS, sourceReady);
+    public MainEntryFragment showDefaultEntries(boolean stop){
+        Fragment player = getSupportFragmentManager().findFragmentByTag(MainEntryFragment.PLAYER_TAG);
+        if(player != null) {
+            PlayerFragment playerFragment = (PlayerFragment) player;
+            if (stop) playerFragment.stopMusic();
         }
-    }
 
-    public void onEqEntry(){
-        if(mEQEntry.isEnabled()) {
-            if (mPanel.isSourceReady()) {
-                WrapperActivity.go(this, WrapperActivity.FRAGMENT_EQ);
-            } else {
-                Toast.makeText(this, "请在播放时调节音效！", Toast.LENGTH_LONG).show();
-            }
+        Fragment enties = getSupportFragmentManager().findFragmentByTag(ENTRY_TAG);
+        if(enties==null){
+            enties = new MainEntryFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main_entry_container, enties, ENTRY_TAG)
+                    .commit();
         }
+        return (MainEntryFragment)enties;
     }
 
     public void onFirmwareUpgrading(boolean enabled) {
-        mSettings.setEnabled(enabled);
-        mEQEntry.setEnabled(enabled);
+        mEntries.enableSettings(enabled);
+        mEntries.enableEq(enabled);
         mPanel.enableVolControl(enabled);
+    }
+
+    public void showEq(){
+        if(mEntries != null){
+            mEntries.showEq();
+        }
+    }
+
+    public void showSettings(){
+        if(mEntries != null){
+            mEntries.showSettings();
+        }
+    }
+
+    public boolean supportNewUi(){
+        String ver = SoundBarORM.getSettingValue(this, SoundBarORM.dfuCurrentVersion);
+        return ver.compareTo("4.0.4")>=0;
+    }
+
+    public boolean supportSource(){
+        String ver = SoundBarORM.getSettingValue(this, SoundBarORM.dfuCurrentVersion);
+        return ver.compareTo("4.0.4")>=0;
+    }
+
+    public void refreshDeviceInfoDelay(long delay){
+        mPanel.refreshBarPanel(delay);
     }
 }

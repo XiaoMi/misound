@@ -150,9 +150,9 @@ public class RoundProgressBar extends View {
     }
     protected Rect getDrawableRect(){
         Rect r = new Rect();
-        r.left = getPaddingLeft() + getPaddingLeft() + mBorderOffset;
+        r.left = getPaddingLeft() + mBorderOffset;
         r.right = getWidth()-getPaddingRight() - mBorderOffset;
-        r.top = getPaddingTop() + getPaddingTop() + mBorderOffset;
+        r.top = getPaddingTop() +  mBorderOffset;
         r.bottom = getHeight() - getPaddingBottom() - mBorderOffset;
         return r;
     }

@@ -5,11 +5,11 @@
     </style>
     <style name="SettingItemTitle">
         <item name="android:textSize">@dimen/setting_item_title_size</item>
-        <item name="android:textColor">@color/black_70</item>
+        <item name="android:textColor">@color/font_black_normal</item>
     </style>
     <style name="SettingItemSummary">
         <item name="android:textSize">@dimen/setting_summary_size</item>
-        <item name="android:textColor">@color/black_20</item>
+        <item name="android:textColor">@color/font_gray_normal</item>
     </style>
     <style name="SettingsCategorySpace">
         <item name="android:layout_width">match_parent</item>
@@ -17,8 +17,8 @@
         <item name="android:background">@android:color/holo_blue_light</item>
     </style>
     <style name="SettingButtonItem">
-        <item name="android:layout_width">56dp</item>
-        <item name="android:layout_height">31dp</item>
+        <item name="android:layout_width">55dp</item>
+        <item name="android:layout_height">29dp</item>
     </style>
 
     <style name="wooferRatingBar" parent="@android:style/Widget.RatingBar">
@@ -32,16 +32,36 @@
         <item name="android:minHeight">2dip</item>
         <item name="android:maxHeight">2dip</item>
     </style>
-    <style name="gainSeeker">
+    <style name="playerProgress" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/seeker_player_progress</item>
+        <item name="android:minHeight">2dip</item>
+        <item name="android:maxHeight">2dip</item>
+        <item name="android:max">1000</item>
+        <item name="android:progress">0</item>
+    </style>
+
+    <style name="vertical_gainSeeker">
         <item name="android:progressDrawable">@drawable/seeker_woofer_vol_normal</item>
         <item name="android:thumb">@drawable/custom_settings_equalizer_button</item>
         <item name="android:minHeight">2dip</item>
         <item name="android:maxHeight">2dip</item>
+        <item name="android:layout_marginLeft">20sp</item>
+        <item name="android:layout_centerVertical">true</item>
     </style>
+    <style name="gainSeeker_text">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:rotation">90</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:textColor">@color/font_gray_normal</item>
+        <item name="android:textSize">@dimen/text_size_xh_28px</item>
+    </style>
+
     <style name="SettingItemSpace">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>
-        <item name="android:background">@color/separator</item>
+        <item name="android:background">@color/separator1</item>
     </style>
 
     <style name="ActivityTranparent">

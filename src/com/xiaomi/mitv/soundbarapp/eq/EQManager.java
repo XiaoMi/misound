@@ -1,6 +1,7 @@
 package com.xiaomi.mitv.soundbarapp.eq;
 
 import android.content.Context;
+import android.util.SparseArray;
 import com.xiaomi.mitv.soundbar.DefaultMisoundDevice;
 import com.xiaomi.mitv.soundbar.IMiSoundDevice;
 import com.xiaomi.mitv.soundbar.gaia.GaiaException;
@@ -20,18 +21,13 @@ public class EQManager {
     public static final int EQ_SOFT = IMiSoundDevice.EQ_LIGHT;
 
     public EQStyle findEqById(int id) {
-        if(mStyles.containsKey(id)) {
-            return mStyles.get(id);
-        }
-        return null;
+        return mStyles.get(id);
     }
 
     public int idOfStyle(EQStyle style){
         if (style==null) return -1;
-        Set<Integer> ids = mStyles.keySet();
-        for(Integer id : ids){
-            EQStyle item = mStyles.get(id);
-            if(item.equals(style)) return id;
+        for(int index=0; index<mStyles.size(); index++){
+            if(mStyles.valueAt(index).equals(style)) return mStyles.keyAt(index);
         }
         return R.id.eq_style_custom;
     }
@@ -86,11 +82,10 @@ public class EQManager {
     }
 
     public EQStyleResource getResourceById(int id){
-        if(!mResources.containsKey(id)) return null;
         return mResources.get(id);
     }
 
-    private HashMap<Integer, EQStyleResource> mResources = new HashMap<Integer, EQStyleResource>();
+    private SparseArray<EQStyleResource> mResources = new SparseArray<EQStyleResource>();
     {
         mResources.put(R.id.eq_style_standard, new EQStyleResource(R.string.eq_standar,R.drawable.home_page_bg_xiaomisound_standard, R.drawable.home_page_button_xiaomisound_standard));
         mResources.put(R.id.eq_style_class, new EQStyleResource(R.string.eq_class,R.drawable.home_page_bg_xiaomisound_class, R.drawable.home_page_button_xiaomisound_class));
@@ -102,12 +97,12 @@ public class EQManager {
         mResources.put(R.id.eq_style_tv, new EQStyleResource(R.string.eq_tv,R.drawable.home_page_bg_xiaomisound_tv, R.drawable.home_page_button_xiaomisound_tv));
     }
 
-    private HashMap<Integer, EQStyle> mStyles = new HashMap<Integer, EQStyle>();
+    private SparseArray<EQStyle> mStyles = new SparseArray<EQStyle>();
     {
         mStyles.put(R.id.eq_style_standard, new EQStyle(0,0,0,0,0));
         mStyles.put(R.id.eq_style_movie, new EQStyle(8,0,5,4,2));
-        mStyles.put(R.id.eq_style_tv, new EQStyle(-5,-5,3,2,3));
-        mStyles.put(R.id.eq_style_pop, new EQStyle(2,2,2,2,2));
+        mStyles.put(R.id.eq_style_tv, new EQStyle(0,-5,3,2,3));
+        mStyles.put(R.id.eq_style_pop, new EQStyle(0,2,2,2,2));
         mStyles.put(R.id.eq_style_rock, new EQStyle(6,3,2,1,2));
         mStyles.put(R.id.eq_style_class, new EQStyle(-3,-2,0,-1,-4));
         mStyles.put(R.id.eq_style_jazz, new EQStyle(-2,3,3,4,-2));

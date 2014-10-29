@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:gravity="center_horizontal|center_vertical"
               android:minWidth="200dp"
-              android:layout_marginBottom="10dp"
+              android:paddingBottom="10dp"
               android:layout_width="match_parent"
               android:background="@drawable/home_page_bg_xiaomisound_switch_the_input_source"
               android:layout_height="wrap_content">
@@ -18,10 +18,12 @@
     </Spinner>
     <EditText android:id="@+id/version_desc"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="0dp"
               android:layout_weight="1"
               android:editable="false"
+              android:inputType="none"
               android:textSize="@dimen/text_size_xh_24px"
+              android:textColor="@color/font_gray_normal"
               android:text="Loading..."
               android:gravity="top|left"
               android:scrollbars="vertical"
@@ -29,8 +31,8 @@
     <Button android:id="@+id/upgrade_execute"
             android:layout_width="@dimen/bottom_single_button_width"
             android:layout_height="@dimen/bottom_single_button_height"
-            android:textColor="@color/black_80"
-            android:background="@drawable/btn_master_reset_right"
+            android:textColor="@color/font_black_normal"
+            android:background="@drawable/btn_def"
             android:textSize="@dimen/text_size_xh_28px"
             android:text="@string/upgrade_action"/>
 </LinearLayout>

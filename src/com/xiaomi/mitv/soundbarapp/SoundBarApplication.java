@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.util.Log;
 
+import com.umeng.analytics.MobclickAgent;
 import com.xiaomi.market.sdk.XiaomiUpdateAgent;
 import com.xiaomi.mitv.soundbar.bluetooth.BTDeviceMonitor;
 import com.xiaomi.mitv.soundbar.provider.SoundBarORM;
@@ -40,6 +41,7 @@ public class SoundBarApplication extends Application {
         BTDeviceMonitor.listen(getApplicationContext());
 
         XiaomiUpdateAgent agent = new XiaomiUpdateAgent();
+        MobclickAgent.openActivityDurationTrack(false);
     }
     
     BroadcastReceiver mReceiver ;

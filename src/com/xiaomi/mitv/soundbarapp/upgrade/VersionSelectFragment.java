@@ -117,7 +117,7 @@ public class VersionSelectFragment extends DialogFragment implements View.OnClic
         public View getView(final int position, View convertView, ViewGroup parent) {
             if(convertView==null){
                 LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final ViewGroup item = (ViewGroup)inflater.inflate(R.layout.upgrade_version_item, null);
+                final ViewGroup item = (ViewGroup)inflater.inflate(R.layout.upgrade_version_item, parent, false);
                 ViewHolder holder = new ViewHolder();
                 holder.mVersionName = (TextView)item.findViewById(R.id.version_name);
                 holder.mVersionRelease = (TextView)item.findViewById(R.id.release_flag);

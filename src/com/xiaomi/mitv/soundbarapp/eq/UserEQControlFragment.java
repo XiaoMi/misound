@@ -16,6 +16,7 @@ import com.xiaomi.mitv.soundbar.provider.SoundBarORM;
 import com.xiaomi.mitv.soundbarapp.R;
 import com.xiaomi.mitv.soundbarapp.fragment.BaseFragment;
 import com.xiaomi.mitv.utils.Log;
+import com.xiaomi.mitv.widget.GainView;
 
 /**
  * Created by chenxuetong on 7/28/14.
@@ -29,6 +30,7 @@ public class UserEQControlFragment extends BaseFragment implements SeekBar.OnSee
     private SeekBar mBar3;
     private SeekBar mBar4;
     private SeekBar mBar5;
+    private GainView mGainView;
 
     public static UserEQControlFragment newInstance() {
         UserEQControlFragment f = new UserEQControlFragment();
@@ -46,16 +48,18 @@ public class UserEQControlFragment extends BaseFragment implements SeekBar.OnSee
         super.onActivityCreated(savedInstanceState);
         ((TextView)findViewbyId(R.id.action_bar_text)).setText(R.string.custom_eq_setup);
 
-        mBar1 = (SeekBar)mMainView.findViewById(R.id.eq_band1);
+        mBar1 = findViewbyId(R.id.eq_band1);
         mBar1.setOnSeekBarChangeListener(this);
-        mBar2 = (SeekBar)mMainView.findViewById(R.id.eq_band2);
+        mBar2 = findViewbyId(R.id.eq_band2);
         mBar2.setOnSeekBarChangeListener(this);
-        mBar3 = (SeekBar)mMainView.findViewById(R.id.eq_band3);
+        mBar3 = findViewbyId(R.id.eq_band3);
         mBar3.setOnSeekBarChangeListener(this);
-        mBar4 = (SeekBar)mMainView.findViewById(R.id.eq_band4);
+        mBar4 = findViewbyId(R.id.eq_band4);
         mBar4.setOnSeekBarChangeListener(this);
-        mBar5 = (SeekBar)mMainView.findViewById(R.id.eq_band5);
+        mBar5 = findViewbyId(R.id.eq_band5);
         mBar5.setOnSeekBarChangeListener(this);
+
+        mGainView = findViewbyId(R.id.eq_gain_wave);
 
         ((View)findViewbyId(R.id.actionbar)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,11 +78,11 @@ public class UserEQControlFragment extends BaseFragment implements SeekBar.OnSee
 
         int value = progress- GAIN_OFFSET;
         switch (seekBar.getId()){
-            case R.id.eq_band1: showValue(R.id.eq_value1, value); break;
-            case R.id.eq_band2: showValue(R.id.eq_value2, value); break;
-            case R.id.eq_band3: showValue(R.id.eq_value3, value); break;
-            case R.id.eq_band4: showValue(R.id.eq_value4, value); break;
-            case R.id.eq_band5: showValue(R.id.eq_value5, value); break;
+            case R.id.eq_band1: showValue(R.id.eq_value1, value); mGainView.updateGain(1, value);break;
+            case R.id.eq_band2: showValue(R.id.eq_value2, value); mGainView.updateGain(2, value);break;
+            case R.id.eq_band3: showValue(R.id.eq_value3, value); mGainView.updateGain(3, value);break;
+            case R.id.eq_band4: showValue(R.id.eq_value4, value); mGainView.updateGain(4, value);break;
+            case R.id.eq_band5: showValue(R.id.eq_value5, value); mGainView.updateGain(5, value);break;
         }
     }
 
@@ -208,15 +212,22 @@ public class UserEQControlFragment extends BaseFragment implements SeekBar.OnSee
             protected Boolean doInBackground(Void... params) {
                 IMiSoundDevice mibar = new DefaultMisoundDevice(getActivity());
                 try {
-                    int style = mibar.getEQControl();
-                    if(style != EQManager.EQ_COSTUM){
-                        mibar.setEQControl(EQManager.EQ_COSTUM);
-                    }
                     int[] gains = loadSavedEqGain();
+                    if(gains[0]+gains[1]+gains[2]+gains[3]+gains[4]!=0){
+                        int style = mibar.getEQControl();
+                        if(style != EQManager.EQ_COSTUM){
+                            mibar.setEQControl(EQManager.EQ_COSTUM);
+                        }
+                        for (int i = 0; i < 5; i++) {
+                            UserEQ0x21A eq = new UserEQ0x21A(i+1, gains[i]);
+                            mibar.setUserEQControl(eq);
+                        }
+                        mGainView.setGains(gains);
+                    }
+
                     for (int i = 0; i < 5; i++) {
                         UserEQ0x21A eq = new UserEQ0x21A(i+1, gains[i]);
                         updateEQUI(eq);
-                        mibar.setUserEQControl(eq);
                     }
                 }catch (Exception e){
                     e.printStackTrace();

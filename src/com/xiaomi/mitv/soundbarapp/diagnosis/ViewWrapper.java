@@ -153,7 +153,7 @@ public class ViewWrapper {
         LayoutInflater li = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         for(Node node : questions){
-            View view = li.inflate(R.layout.examine_button_layout, null, false);
+            View view = li.inflate(R.layout.examine_button_layout, mQuestionsList, false);
             TextView button = (TextView)view.findViewById(android.R.id.text1);
             button.setText(node.getElement().getText());
             view.setTag(node);

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_color">
+    <include layout="@layout/actioin_bar" android:id="@+id/actionbar"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="67dp"
+                  android:layout_below="@id/actionbar"
+                  android:padding="14dp"
+                  android:orientation="horizontal"
+                  android:gravity="center_vertical"
+                  android:background="@drawable/bg_playlist_tab"
+                  android:id="@+id/playlist_op_bar">
+        <ImageView android:id="@+id/playlist_play_mode"
+                   android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@drawable/btn_play_mode_switch"/>
+        <TextView android:id="@+id/playlist_play_mode_hint"
+                  android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_marginLeft="12.5dp"
+                  android:textSize="@dimen/text_size_xh_28px"
+                  android:textColor="@color/font_black_normal"
+                  android:text="@string/playlist_mode_random"/>
+    </LinearLayout>
+    <FrameLayout android:id="@+id/main_player_container"
+                 android:layout_alignParentBottom="true"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
+    <ListView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_above="@id/main_player_container"
+              android:layout_below="@id/playlist_op_bar"
+              android:id="@+id/song_list">
+    </ListView>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:visibility="gone"
+              android:layout_centerInParent="true"
+              android:id="@+id/playlist_empty"
+              android:gravity="center_horizontal"
+              android:textColor="@color/font_gray_normal"
+              android:textSize="@dimen/text_size_xh_28px"
+              android:text="@string/playlist_no_songs"/>
+    <com.xiaomi.mitv.widget.LetterIndexSilderBar
+            android:id="@+id/playlist_index_bar"
+            android:layout_width="50dp"
+            android:padding="10dp"
+            android:layout_height="match_parent"
+            android:layout_below="@id/actionbar"
+            android:layout_above="@id/main_player_container"
+            android:layout_alignParentRight="true"/>
+</RelativeLayout>

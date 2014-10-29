@@ -39,10 +39,10 @@ import java.io.InputStream;
  * Created by chenxuetong on 9/3/14.
  */
 public class UpgradeFragment extends BaseFragment {
-    private RoundProgressBar mUpgradeProgressBar;
     private ProgressBar mVersionChecking;
     private TextView mProgressText;
     private ImageView mUpgradeReminder;
+    private ImageView mIcon;
     private TextView mUpgradeStatus;
     private View mMainView;
 
@@ -52,18 +52,18 @@ public class UpgradeFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mMainView = inflater.inflate(R.layout.upgrade_widget_layout, null);
+        mMainView = inflater.inflate(R.layout.upgrade_widget_layout, container, false);
         return mMainView;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mUpgradeProgressBar = findViewbyId(R.id.upgrade_main_progress_bar);
         mVersionChecking = findViewbyId(R.id.upgrade_checking_progress);
         mProgressText = findViewbyId(R.id.upgrade_progres_text);
         mUpgradeReminder = findViewbyId(R.id.upgrade_reminder);
         mUpgradeStatus = findViewbyId(R.id.upgarde_status_text);
+        mIcon = findViewbyId(R.id.upgrade_icon);
 
         View button = findViewbyId(R.id.upgrade_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +141,6 @@ public class UpgradeFragment extends BaseFragment {
         int progress = code;
         Log.logD("progress: " + progress);
         if(progress>=0 && progress<=100) {
-            mUpgradeProgressBar.setProgress(progress);
             mProgressText.setText(progress + "%");
         }
 
@@ -192,7 +191,7 @@ public class UpgradeFragment extends BaseFragment {
     }
 
     private void showDefault(boolean haveUpdate){
-        mUpgradeProgressBar.setVisibility(View.GONE);
+        mIcon.setVisibility(View.VISIBLE);
         mProgressText.setVisibility(View.GONE);
         mProgressText.setText("0%");
         mUpgradeStatus.setText(R.string.main_entry_upgrade);
@@ -200,40 +199,40 @@ public class UpgradeFragment extends BaseFragment {
     }
 
     private void showVerChecking(){
+        mIcon.setVisibility(View.GONE);
         mUpgradeReminder.setVisibility(View.GONE);
-        mUpgradeProgressBar.setVisibility(View.VISIBLE);
         mUpgradeStatus.setVisibility(View.VISIBLE);
         mUpgradeStatus.setText(R.string.main_upgrade_checking);
         mVersionChecking.setVisibility(View.VISIBLE);
     }
 
     private void showDownloading(){
+        mIcon.setVisibility(View.GONE);
         mUpgradeReminder.setVisibility(View.GONE);
         mUpgradeStatus.setVisibility(View.VISIBLE);
         mProgressText.setVisibility(View.VISIBLE);
         mProgressText.setText("0%");
         mUpgradeStatus.setText(R.string.main_upgrade_downlad);
-        mUpgradeProgressBar.setVisibility(View.VISIBLE);
         mVersionChecking.setVisibility(View.GONE);
     }
 
     private void showUploading(){
+        mIcon.setVisibility(View.INVISIBLE);
         mUpgradeReminder.setVisibility(View.GONE);
         mUpgradeStatus.setVisibility(View.VISIBLE);
         mProgressText.setVisibility(View.VISIBLE);
         mProgressText.setText("0%");
         mUpgradeStatus.setText(R.string.main_upgrade_upload);
-        mUpgradeProgressBar.setVisibility(View.VISIBLE);
         mVersionChecking.setVisibility(View.GONE);
     }
 
     private void showUpgrading(){
+        mIcon.setVisibility(View.GONE);
         mUpgradeReminder.setVisibility(View.GONE);
         mUpgradeStatus.setVisibility(View.VISIBLE);
         mProgressText.setVisibility(View.VISIBLE);
         mProgressText.setText("0%");
         mUpgradeStatus.setText(R.string.main_upgrade_ongoing);
-        mUpgradeProgressBar.setVisibility(View.VISIBLE);
         mVersionChecking.setVisibility(View.GONE);
     }
 
@@ -248,7 +247,7 @@ public class UpgradeFragment extends BaseFragment {
                     versionName = fileName.substring(0, fileName.lastIndexOf(".ver"));
                 }
             }
-        }catch (IOException e){
+        }catch (Exception e){
             e.printStackTrace();
         }
         return versionName;

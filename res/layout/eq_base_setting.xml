@@ -1,61 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <include android:id="@+id/actionbar" layout="@layout/actioin_bar"/>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/actionbar"
-            android:paddingBottom="24dp"
-            android:orientation="vertical"
-            android:paddingLeft="53dp"
-            android:paddingRight="53dp"
-            android:paddingTop="24dp">
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <include android:id="@+id/eq_style_standard" layout="@layout/eq_setting_item"/>
-            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
-            <include android:id="@+id/eq_style_movie" layout="@layout/eq_setting_item"/>
-        </LinearLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:layout_height="0dp" android:layout_weight="1">
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:orientation="horizontal">
-            <include android:id="@+id/eq_style_tv" layout="@layout/eq_setting_item"/>
-            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
-            <include android:id="@+id/eq_style_pop" layout="@layout/eq_setting_item"/>
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                android:paddingLeft="53dp"
+                android:paddingRight="53dp">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <include android:id="@+id/eq_style_standard" layout="@layout/eq_setting_item"/>
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+                <include android:id="@+id/eq_style_movie" layout="@layout/eq_setting_item"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
+                <include android:id="@+id/eq_style_tv" layout="@layout/eq_setting_item"/>
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+                <include android:id="@+id/eq_style_pop" layout="@layout/eq_setting_item"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
+                <include android:id="@+id/eq_style_rock" layout="@layout/eq_setting_item"/>
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+                <include android:id="@+id/eq_style_class" layout="@layout/eq_setting_item"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
+                <include android:id="@+id/eq_style_jazz" layout="@layout/eq_setting_item"/>
+                <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
+                <include android:id="@+id/eq_style_custom" layout="@layout/eq_setting_item"/>
+            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:orientation="horizontal">
-            <include android:id="@+id/eq_style_rock" layout="@layout/eq_setting_item"/>
-            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
-            <include android:id="@+id/eq_style_class" layout="@layout/eq_setting_item"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:visibility="gone"
+                      android:background="@color/black_60"
+                      android:gravity="center"
+                      android:id="@+id/loading">
+            <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"
+                         style="@style/Miprogress_bar_big"/>
         </LinearLayout>
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:orientation="horizontal">
-            <include android:id="@+id/eq_style_jazz" layout="@layout/eq_setting_item"/>
-            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1"/>
-            <include android:id="@+id/eq_style_custom" layout="@layout/eq_setting_item"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                  android:visibility="gone"
-                  android:background="@color/black_60"
-                  android:gravity="center"
-                  android:id="@+id/loading">
-        <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"
-                style="@style/Miprogress_bar_big"/>
-    </LinearLayout>
-</RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

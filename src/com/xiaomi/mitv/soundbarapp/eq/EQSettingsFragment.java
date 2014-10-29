@@ -2,6 +2,7 @@ package com.xiaomi.mitv.soundbarapp.eq;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -182,7 +183,7 @@ public class EQSettingsFragment extends BaseFragment implements View.OnClickList
         ImageView selector;
     }
 
-    private HashMap<Integer, EQItem> mItemResources = new HashMap<Integer, EQItem>();
+    private SparseArray<EQItem> mItemResources = new SparseArray<EQItem>();
     {
         mItemResources.put(R.id.eq_style_standard, new EQItem(R.drawable.ic_eq_style_standard, R.string.eq_standar));
         mItemResources.put(R.id.eq_style_movie, new EQItem(R.drawable.ic_eq_style_movie, R.string.eq_movie));

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">小米音响</string>
 
     <string name="dfu_version">3.0.2.ver</string>
-    <string name="title_activity_xiaomi_soundbar">固件版本(3.0.2)</string>
-    <string name="title_main">固件版本(3.0.2)</string>
 
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
@@ -14,90 +12,37 @@
     <string name="ipc_begin_update_dfu">Service Update</string>
     <string name="show_log">Show Log</string>
     <string name="fetch_version">Fetch Version Info</string>
-    <string name="fetch_subwoofer">Fetch SubWoofer</string>
-    <string name="volume_plus">Volume+</string>
-    <string name="volume_sub">Volume-</string>
     <string name="action_soundbar">Sound Bar Test</string>
-    <string name="source_get">Current Sources</string>
-    <string name="source_get_available">Avail Sources</string>
-    <string name="source_set_available">Set Source</string>
-    <string name="clear_sb_address">Clear SoundBar address</string>
     <string name="close_connection">Close Connection</string>
-    <string name="set_volume">Set Volume</string>
-    <string name="default_volume">75</string>
-    <string name="clear_log">Clear Log</string>
 
 
 
 
-    <string name="title_effection_settings">音效设置</string>
-    <string name="title_about">关于</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
 
-    <string name="menu_local">本地更新</string>
-    <string name="button_scan">重新查找小米音响</string>
-    <string name="button_connect">连接小米音响</string>
-    <string name="button_version_check">检查版本</string>
-    <string name="button_version_upgrade">升级小米音响</string>
 
-    <string name="splash_title">小米音响</string>
-    <string name="connect_title">连接小米音响</string>
-    <string name="connect_ok">小米音响连接成功</string>
-    <string name="connect_failed">小米音响连接失败</string>
-    <string name="title_activity_connect_bar">ConnectBar</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="qa_title">常用问题列表</string>
-    <string name="qa_loading">载入数据中</string>
     <string name="qa_loading_failure">读取帮助信息失败</string>
     
-    <string name="setting_sound_control">小米音响参数</string>
     <string name="setting_private_mode_title">私人模式</string>
     <string name="setting_private_mode_summary">开启私人模式后，音响无法被其他人争抢配对</string>
-    <string name="connect_failure">扫描小米音响失败</string>
-    <string name="scan_suc_with_version">扫描到小米音响\n地址:%1$s\n版本号:%2$s</string>
-    <string name="portal_upgrade">音响升级</string>
-    <string name="portal_help">常见问题</string>
     
     <string name="fb_title">意见反馈</string>
-    <string name="fb_suggestion">产品建议</string>
-    <string name="fb_bug">程序错误</string>
-    <string name="fb_subject">主题</string>
     <string name="fb_msg">请留下您的宝贵意见</string>
-    <string name="fb_suggestion_msg">您的宝贵建议，我们将不断改进</string>
-    <string name="fb_error_msg">详细错误描述</string>
     <string name="fb_hint_phone">手机号/邮箱</string>
-    <string name="fb_mail">邮件</string>
     <string name="fb_submit">提交</string>
     <string name="fb_submit_finish">提交成功</string>
     <string name="fb_tost">请填写xxx</string>
-    <string name="fb_log">上传错误日志</string>
     <string name="fb_contact">请填写您的联系方式</string>
 
-    <string name="portal_examine">故障诊断</string>
     <string name="examine_category_title">请选择您遇到的问题</string>
-    <string name="examine_loading">正在加载诊断数据...</string>
-    <string name="examine_fragment_title">故障诊断</string>
 
-    <string name="feedback">Feedback</string>
     <string name="menu_feedback">Feedback</string>
-    <string name="connect_scan_device">正在查找小米音响</string>
-    <string name="connect_ok_connecting">找到音响%1$s，正在建立连接</string>
-    <string name="connect_ok_query_version">已经连接到%1$s，正在获取软件版本</string>
     <string name="settings_woofer_volume">低音炮音量</string>
-    <string name="setting_woofer_setting">基本设置</string>
-    <string name="setting_adavanced_setting">高级设置</string>
     <string name="setting_master_reset">重置</string>
     <string name="setting_master_reset_title">恢复出厂设置</string>
-    <string name="settings_soundbar_volume">音响音量</string>
     <string name="setting_woofer_connect_tone_title">低音炮连接提示音</string>
-    <string name="setting_eq_control_title">音效设置</string>
-    <string name="setting_eq_select">选择一个音效</string>
-    <string name="examine_check">手动诊断</string>
     <string name="custom_eq_setup">自定义音效</string>
     <string name="upgrade_version_selection_title">选择升级版本</string>
     <string name="upgrade_action">升级</string>
@@ -112,12 +57,10 @@
     <string name="main_panel_title">小米音响</string>
     <string name="main_panel_eq_style_f">音效模式：%1$s</string>
     <string name="main_panel_woofer_vol">低音强度：</string>
-    <string name="input_source_tv">小米电视</string>
     <string name="main_panel_no_woofer">"低音炮未连接,点击重新连接"</string>
     <string name="main_panel_woofer_connecting">正在连接低音炮</string>
     <string name="setting_upgrade_log">升级日志</string>
     <string name="setting_device_name">设备名称</string>
-    <string name="setting_device_name_default">小米音响</string>
     <string name="eq_standar">默认</string>
     <string name="eq_movie">看电影</string>
     <string name="eq_tv">看电视</string>
@@ -127,8 +70,6 @@
     <string name="eq_jazz">爵士乐</string>
     <string name="eq_class">古典音乐</string>
     <string name="eq_rock">摇滚乐</string>
-    <string name="main_no_source_alert">没有连接音源</string>
-    <string name="main_no_source">在声音输入源连接时，才可以调节音量和音效</string>
     <string name="setting_reset_alert">重置音响将丢失连接记录，更多音效参数和所有设置值，确认要重置?</string>
     <string name="input_source_none">无音源</string>
     <string name="setting_deviceid_title">设备ID</string>
@@ -144,5 +85,17 @@
     <string name="main_upgrade_downlad">正在下载固件</string>
     <string name="main_upgrade_upload">正在写入固件</string>
     <string name="main_upgrade_ongoing">正在升级固件</string>
-
+    <!-- Do not translate. Duration format for duration < 1 hour -->
+    <string translatable="false" name="durationformatshort"><xliff:g id="format">%2$d:%5$02d</xliff:g></string>
+    <!-- Do not translate. Duration format for duration >= 1 hour -->
+    <string translatable="false" name="durationformatlong"><xliff:g id="format">%1$d:%3$02d:%5$02d</xliff:g></string>
+    <string name="unknown_artist_name">未知歌手</string>
+    <string name="unknown_album_name">未知专辑</string>
+    <string name="notification_artist_album"><xliff:g id="artist">%1$s</xliff:g></string>
+    <string name="playlist_mode_random">随机播放全部</string>
+    <string name="player_select_song">进入音乐列表选择歌曲</string>
+    <string name="play_precondition">播放音乐，请切换播放源至手机</string>
+    <string name="player_switch">切换</string>
+    <string name="playlist_title">本地音乐</string>
+    <string name="playlist_no_songs">没有找到本地音乐</string>
 </resources>

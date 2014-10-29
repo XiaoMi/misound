@@ -14,7 +14,6 @@
         android:layout_height="30dp"
         android:indeterminate="false"
         android:max="100"
-        android:textAlignment="center"        
         style="?android:attr/progressBarStyleHorizontal"/>
     
     <TextView

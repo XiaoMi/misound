@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="74dp"
     android:gravity="left|center_vertical"
-    android:paddingLeft="22dp"
+    android:paddingLeft="35dp"
+    android:paddingRight="13dp"
+    android:background="@drawable/diagnosis_list_item_bg"
     android:orientation="horizontal" >
 
     <TextView
@@ -12,6 +14,5 @@
             android:layout_gravity="center_vertical"
             android:textColor="@color/black_70"
             android:textSize="@dimen/text_size_xh_28px"
-            android:id="@+id/qa_item_title"
-            />
+            android:id="@+id/qa_item_title"/>
 </LinearLayout>

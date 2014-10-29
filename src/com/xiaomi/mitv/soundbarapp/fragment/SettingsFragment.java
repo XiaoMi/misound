@@ -8,12 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.xiaomi.mitv.idata.util.iDataCenterORM;
+import com.xiaomi.mitv.idata.util.DeviceHelper;
 import com.xiaomi.mitv.soundbar.DefaultMisoundDevice;
 import com.xiaomi.mitv.soundbar.IMiSoundDevice;
 import com.xiaomi.mitv.soundbar.gaia.GaiaException;
 import com.xiaomi.mitv.soundbar.provider.SoundBarORM;
 import com.xiaomi.mitv.soundbarapp.R;
+import com.xiaomi.mitv.soundbarapp.util.ConfirmActivityDlg;
 import com.xiaomi.mitv.utils.Log;
 import com.xiaomi.mitv.widget.MiSwitch;
 
@@ -24,9 +25,9 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     public static final int WOOFER_VOL_MAX = 31;
     private static final String TAG = "Settings";
 
-    private ViewGroup mMainView;
     private View mLoading;
     private SeekBar mWooferVolume;
+    private TextView mWooferVolumeText;
     private MiSwitch mToneMuteView;
     private MiSwitch mSafeModeView;
     private WooferVolumeSet mWooferVolController;
@@ -38,8 +39,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mMainView = (ViewGroup)inflater.inflate(R.layout.fragment_setting_layout, container, false);
-        return mMainView;
+        return inflater.inflate(R.layout.fragment_setting_layout, container, false);
     }
 
     @Override
@@ -81,12 +81,14 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     void buildView(){
         ((View)findViewbyId(R.id.actionbar)).setOnClickListener(this);
         ((TextView)findViewbyId(R.id.action_bar_text)).setText(R.string.main_entry_settings);
-        mLoading = mMainView.findViewById(R.id.loading);
-        mWooferVolume = (SeekBar)mMainView.findViewById(R.id.woofer_seek);
+        mLoading = findViewbyId(R.id.loading);
+        mWooferVolumeText = findViewbyId(R.id.woofer_seek_text);
+        mWooferVolume = findViewbyId(R.id.woofer_seek);
         mWooferVolume.setMax(WOOFER_VOL_MAX);
         mWooferVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                mWooferVolumeText.setText(100*progress/31 +"%");
                 if(fromUser) mWooferVolController.applyChange();
             }
             @Override
@@ -94,15 +96,15 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-        mToneMuteView = (MiSwitch)mMainView.findViewById(R.id.woofer_connect_tone);
+        mToneMuteView = findViewbyId(R.id.woofer_connect_tone);
         mToneMuteView.setOnCheckChangedListener(new MiSwitch.OnCheckChangedListener() {
             @Override
             public void onChanged(boolean checked) {
                 muteWooferTone(!checked);
             }
         });
-        mMainView.findViewById(R.id.master_rest).setOnClickListener(this);
-        mSafeModeView = (MiSwitch)mMainView.findViewById(R.id.safe_mode);
+        ((View)findViewbyId(R.id.master_rest)).setOnClickListener(this);
+        mSafeModeView = findViewbyId(R.id.safe_mode);
         mSafeModeView.setOnCheckChangedListener(new MiSwitch.OnCheckChangedListener() {
             @Override
             public void onChanged(boolean checked) {
@@ -125,7 +127,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
         TextView key = (TextView)getActivity().findViewById(R.id.app_key);
         try {
-            key.setText(iDataCenterORM.getInstance(this.getActivity()).getSettingValue("deviceid"));
+            key.setText(DeviceHelper.getDeviceID(getActivity()));
         }catch (Exception ne){}
     }
 
@@ -206,6 +208,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                     @Override
                     public void run() {
                         mWooferVolume.setProgress(wooferVol);
+                        mWooferVolumeText.setText(100*wooferVol/31 +"%");
                     }
                 });
             }else{
@@ -257,7 +260,17 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void showConfirm() {
-        startActivity(new Intent(getActivity(), ConfirmActivityDlg.class));
+        ConfirmActivityDlg.show(getActivity(), R.string.setting_reset_alert, new ConfirmActivityDlg.onAction() {
+            @Override
+            public void onConfirmed(boolean ret) {
+                IMiSoundDevice mibar = new DefaultMisoundDevice(getActivity());
+                try {
+                    mibar.masterReset();
+                } catch (GaiaException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private class WooferVolumeSet implements Runnable {
@@ -291,7 +304,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                     IMiSoundDevice mibar = new DefaultMisoundDevice(getActivity());
                     try {
                         while (mCurrentVol <= WOOFER_VOL_MAX) {
-                            int vol = (int) mWooferVolume.getProgress();
+                            int vol = mWooferVolume.getProgress();
                             Log.logD(TAG, "change woofer vol from: " + mCurrentVol + " to " + vol);
                             if (vol < mCurrentVol) {
                                 if (mibar.setWooferVolume(IMiSoundDevice.WOOFER_VOL_DECRESE)) {
@@ -310,40 +323,6 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                     }
                 }
             });
-        }
-    }
-
-    public static class ConfirmActivityDlg extends Activity{
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.confirm_layout);
-            findViewById(R.id.master_reset_alert_cancel).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-            findViewById(R.id.master_reset_alert_ok).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    masterReset();
-                    finish();
-                }
-            });
-        }
-        private void masterReset() {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    IMiSoundDevice mibar = new DefaultMisoundDevice(ConfirmActivityDlg.this);
-                    try {
-                        mibar.masterReset();
-                    } catch (GaiaException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
         }
     }
 }

@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="@dimen/top_bar_height"
-              android:gravity="center_vertical"
               android:layout_alignParentTop="true"
-              android:background="@drawable/seting_bg_set_up">
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="13dp"
-            android:src="@drawable/sound_style_pic_xiaomisound_top_horn"/>
-    <TextView android:id="@+id/action_bar_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="13dp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_xh_24px"/>
-</LinearLayout>
+              android:background="#efeff0">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  android:gravity="center_vertical">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:src="@drawable/sound_style_pic_xiaomisound_top_horn"/>
+        <TextView android:id="@+id/action_bar_text"
+                  android:layout_width="0dp" android:layout_weight="1"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="13dp"
+                  android:textColor="@color/font_black_normal"
+                  android:textSize="@dimen/text_size_xh_28px"/>
+        <View android:layout_width="0dp" android:layout_height="40dp"
+              android:background="@color/separator0"/>
+        <TextView android:id="@+id/action_bar_op1"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="6dp"
+                  android:layout_marginRight="6dp"
+                  android:textSize="@dimen/text_size_xh_28px"
+                  android:textColor="@color/font_black_normal"/>
+    </LinearLayout>
+    <View android:layout_width="match_parent" android:layout_height="0.3dp"
+          android:layout_alignParentBottom="true"
+          android:background="#c5c5c5"/>
+</RelativeLayout>

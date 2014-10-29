@@ -1,22 +1,18 @@
 package com.xiaomi.mitv.soundbarapp.fragment;
 
 import android.app.AlertDialog;
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
-import android.graphics.Rect;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.xiaomi.mitv.soundbar.bluetooth.A2dpProfile;
-import com.xiaomi.mitv.soundbar.protocol.Source;
-import com.xiaomi.mitv.soundbar.protocol.TraceInfo0x816;
-import com.xiaomi.mitv.soundbar.provider.SoundBarORM;
+import com.xiaomi.mitv.soundbarapp.MainActivity2;
 import com.xiaomi.mitv.soundbarapp.R;
 
 /**
@@ -28,65 +24,74 @@ public class A2dpDlg {
     private static final int ACTION_CONNECT = 0;
     private static final int ACTION_DISCONNECT = 1;
 
-    private Context mConext;
+    private MainActivity2 mMainActivity;
     private A2dpProfile mProfile;
     private boolean mSelectionDone = false;
+    private AudioManager mAudioManager;
 
-    public A2dpDlg(Context context, A2dpProfile profile){
-        mConext = context;
+    public A2dpDlg(MainActivity2 context, A2dpProfile profile){
+        mMainActivity = context;
         mProfile = profile;
+        mAudioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
     }
 
-    public void show(View base, Runnable runnable){
-        BluetoothDevice bar = getBarDevice();
+    public void show(Runnable runnable, boolean confirmed){
+        BluetoothDevice bar = mProfile.getBarDevice(mMainActivity);
         if(bar == null) return;
 
         boolean imConnected = mProfile.isConnected(bar);
 
         if (!imConnected) {
-            show(base, ACTION_CONNECT, runnable);
+            show(ACTION_CONNECT, runnable, confirmed);
         } else {
-            show(base, ACTION_DISCONNECT, runnable);
+            show(ACTION_DISCONNECT, runnable, confirmed);
         }
     }
 
-    private void show(View base, final int action, final Runnable callback){
-        AlertDialog.Builder builder = new AlertDialog.Builder(mConext);
-        final View contain = View.inflate(mConext, R.layout.source_selector, null);
+    public boolean isA2dpSelected(){
+        return mAudioManager.isBluetoothA2dpOn();
+    }
+
+    private void show(final int action, final Runnable callback, boolean confirmed){
+        AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity);
+        final View contain = View.inflate(mMainActivity, R.layout.source_selector, null);
         builder.setView(contain);
         final AlertDialog dlg = builder.create();
-        {
-            View item1 = contain.findViewById(R.id.source_1);
-            item1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(mSelectionDone) return;
-                    mSelectionDone = true;
-                    contain.findViewById(R.id.source_progress).setVisibility(View.VISIBLE);
-                    if(action == ACTION_CONNECT){
-                        connectPhone2Bar(dlg, callback);
-                    }else{
-                        disconnectPhoneFromBar(dlg, callback);
-                    }
-                }
-            });
 
-            TextView v = (TextView)contain.findViewById(R.id.source_content_1);
-            if(action == ACTION_CONNECT) {
-                v.setText("连接我的手机");
-            }else{
-                v.setText("断开我的手机");
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mSelectionDone) return;
+                mSelectionDone = true;
+                contain.findViewById(R.id.source_progress).setVisibility(View.VISIBLE);
+                if(action == ACTION_CONNECT){
+                    connectPhone2Bar(dlg, callback);
+                }else{
+                    disconnectPhoneFromBar(dlg, callback);
+                }
             }
+        };
+
+        View item1 = contain.findViewById(R.id.source_1);
+        item1.setOnClickListener(listener);
+
+        TextView v = (TextView)contain.findViewById(R.id.source_content_1);
+        if(action == ACTION_CONNECT) {
+            v.setText("连接我的手机");
+        }else{
+            v.setText("断开我的手机");
         }
+
         dlg.show();
-        caculatePos(base, dlg);
+        caculatePos(dlg);
+        if(confirmed) listener.onClick(item1);
     }
 
-    private void caculatePos(View base, AlertDialog dlg){
+    private void caculatePos(AlertDialog dlg){
         Window w = dlg.getWindow();
         WindowManager.LayoutParams lp =w.getAttributes();
 
-        DisplayMetrics display = mConext.getResources().getDisplayMetrics();
+        DisplayMetrics display = mMainActivity.getResources().getDisplayMetrics();
         int dpi = display.densityDpi;
         lp.width = 200*dpi/160;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
@@ -95,24 +100,11 @@ public class A2dpDlg {
         w.setAttributes(lp);
     }
 
-    private BluetoothDevice getBarDevice(){
-        String addr = SoundBarORM.getSettingValue(mConext, SoundBarORM.addressName);
-        if (addr == null) return null;
-        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
-        BluetoothDevice bar = adapter.getRemoteDevice(addr);
-        return bar;
-    }
-
     private void connectPhone2Bar(final AlertDialog dlg, final Runnable callback){
-        final BluetoothDevice bar = getBarDevice();
+        final BluetoothDevice bar = mProfile.getBarDevice(mMainActivity);
         if(bar == null) return;
-        mProfile.connect(bar, new Runnable() {
-            @Override
-            public void run() {
-                showAlert("提示", "手机已经连接到音响，播放音乐试试效果吧!");
-            }
-        });
-        if(callback != null) {
+        boolean ok = mProfile.connect(bar, null);
+        if(ok && callback != null) {
             runDelay(new Runnable() {
                 @Override
                 public void run() {
@@ -125,14 +117,17 @@ public class A2dpDlg {
                     }, 1000);
                 }
             }, 5000);
+        }else{
+            dlg.dismiss();
         }
     }
 
     private void disconnectPhoneFromBar(final AlertDialog dlg, final Runnable callback){
-        final BluetoothDevice bar = getBarDevice();
+        final BluetoothDevice bar = mProfile.getBarDevice(mMainActivity);
         if(bar == null) return;
-        mProfile.disconnect(bar, null);
-        if(callback != null) {
+        boolean ok = mProfile.disconnect(bar, null);
+        mMainActivity.showDefaultEntries(true);
+        if(ok && callback != null) {
             runDelay(new Runnable() {
                 @Override
                 public void run() {
@@ -145,6 +140,8 @@ public class A2dpDlg {
                     }, 1000);
                 }
             }, 5000);
+        }else{
+            dlg.dismiss();
         }
     }
 
@@ -153,7 +150,7 @@ public class A2dpDlg {
     }
 
     private void showAlert(String title, String msg) {
-        new AlertDialog.Builder(mConext)
+        new AlertDialog.Builder(mMainActivity)
                 .setTitle(title)
                 .setMessage(msg)
                 .setNegativeButton(android.R.string.ok, null)

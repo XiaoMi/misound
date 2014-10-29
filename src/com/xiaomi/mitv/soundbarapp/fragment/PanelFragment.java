@@ -1,7 +1,6 @@
 package com.xiaomi.mitv.soundbarapp.fragment;
 
 
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +21,7 @@ import com.xiaomi.mitv.soundbarapp.R;
 import com.xiaomi.mitv.soundbarapp.eq.EQManager;
 import com.xiaomi.mitv.soundbarapp.eq.EQStyle;
 import com.xiaomi.mitv.soundbarapp.eq.EQStyleResource;
+import com.xiaomi.mitv.soundbarapp.util.Worker;
 import com.xiaomi.mitv.utils.Log;
 import com.xiaomi.mitv.widget.RoundSeekBar;
 import org.json.JSONException;
@@ -38,6 +38,7 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
     private TextView mVolumeProgressTextView;
     private RoundSeekBar mSoundbarVol;
     private View mVolumeImageView;
+    private ImageView mStaticVolumeImageView;
     private Button mSourceButton;
     private View mSafetyMode;
     private TextView mEqStyle;
@@ -45,17 +46,25 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
     private TextView mWooferInfo;
     private SoundBarVolumeSet mSoundBarVolController;
     private TraceInfo0x816 mBaseInfo = null;
-    private InitListener mListener;
+    private PanelListener mListener;
     private A2dpProfile mProfile;
 
+    private Worker mWorker;
+    private Handler mDeviceInfoHandler;
 
-    public interface InitListener{
-        public void onPanelInitFinished();
+    public interface PanelListener {
+        public void onPanelRefreshed(TraceInfo0x816 info);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mWorker = new Worker("panel_worker");
+        mDeviceInfoHandler = new Handler(mWorker.getLooper());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mIsDestoryed = false;
         mMain = inflater.inflate(R.layout.fragment_panel, container, false);
         return mMain;
     }
@@ -70,17 +79,28 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onResume() {
         super.onResume();
-        initBarPanel();
+        refreshBarPanel(0);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mIsDestoryed = true;
         mProfile = null;
     }
 
-    public void setInitListener(InitListener l){
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mWorker!=null) mWorker.quit();
+    }
+
+    @Override
+    protected void runTask(Runnable r) {
+        if(mDeviceInfoHandler!=null) mDeviceInfoHandler.post(r);
+        else super.runTask(r);
+    }
+
+    public void setInitListener(PanelListener l){
         mListener = l;
     }
 
@@ -93,17 +113,29 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
     }
 
     public boolean supportNewUi(){
-        String ver = SoundBarORM.getSettingValue(getActivity(), SoundBarORM.dfuCurrentVersion);
-        return ver.compareTo("4.0.4")>=0;
+        return ((MainActivity2)getActivity()).supportNewUi();
     }
 
     public boolean supportSource(){
-        String ver = SoundBarORM.getSettingValue(getActivity(), SoundBarORM.dfuCurrentVersion);
-        return ver.compareTo("4.0.4")>=0;
+        return ((MainActivity2)getActivity()).supportSource();
+    }
+
+    public void refreshBarPanel(long delay){
+        if(supportNewUi()) {
+            mDeviceInfoHandler.removeCallbacks(mInitTask);
+            if(delay<=0){
+                mInitTask.run();
+            }else {
+                mDeviceInfoHandler.postDelayed(mInitTask, delay);
+            }
+        }else {
+            onInitFinished();
+        }
     }
 
     private void buildUi(){
         mVolumeImageView = findViewById(R.id.main_panel_vol_wave);
+        mStaticVolumeImageView = findViewById(R.id.main_panel_vol_wave_static);
         mVolumeProgressTextView = findViewById(R.id.main_panel_vol_val);
         mSourceButton = findViewById(R.id.main_panel_input_source);
         mSourceButton.setOnClickListener(this);
@@ -138,27 +170,22 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
         });
     }
 
-    private void initBarPanel(){
-        if(supportNewUi()) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    loadBaseInfo();
-                    if (isSourceReady()) {
-                        loadEqStyle();
-                    }
-                    onInitFinished();
-                }
-            }, "panel_loader").start();
-        }else {
+    private Runnable mInitTask = new Runnable() {
+        @Override
+        public void run() {
+            loadBaseInfo();
+            if (isSourceReady()) {
+                loadEqStyle();
+            }
             onInitFinished();
         }
-    }
+    };
+
     private void onInitFinished(){
         updateUi(new Runnable() {
             @Override
             public void run() {
-                if (mListener != null) mListener.onPanelInitFinished();
+                if (mListener != null) mListener.onPanelRefreshed(mBaseInfo);
             }
         });
     }
@@ -171,23 +198,35 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
         @Override
         public void onSeekBegin() {
             mVolumeProgressTextView.setVisibility(View.VISIBLE);
-            mVolumeImageView.setVisibility(View.GONE);
             ((View)findViewById(R.id.main_panel_vol_val_title)).setVisibility(View.VISIBLE);
+            mVolumeImageView.setVisibility(View.GONE);
+            mStaticVolumeImageView.setVisibility(View.GONE);
         }
 
         @Override
         public void onSeekChanged(RoundSeekBar bar, int vol, boolean fromUser) {
             showVol(vol);
+            if(vol==0){
+                mVolumeProgressTextView.setVisibility(View.GONE);
+                ((View)findViewById(R.id.main_panel_vol_val_title)).setVisibility(View.GONE);
+                showVolWaveImg(true, 0);
+            }else{
+                mVolumeProgressTextView.setVisibility(View.VISIBLE);
+                ((View)findViewById(R.id.main_panel_vol_val_title)).setVisibility(View.VISIBLE);
+                mVolumeImageView.setVisibility(View.GONE);
+                mStaticVolumeImageView.setVisibility(View.GONE);
+            }
             if(mSoundBarVolController !=null) mSoundBarVolController.applyChange();
         }
 
         @Override
         public void onSeekEnd() {
+            final int vol = mSoundbarVol.getProgress();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     mVolumeProgressTextView.setVisibility(View.GONE);
-                    mVolumeImageView.setVisibility(View.VISIBLE);
+                    showVolWaveImg(true, vol);
                     ((View)findViewById(R.id.main_panel_vol_val_title)).setVisibility(View.GONE);
                 }
             }, 1500);
@@ -211,10 +250,10 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
                 selectInputSource();
                 break;
             case R.id.main_panel_eq_style:
-                ((MainActivity2)getActivity()).onEqEntry();
+                ((MainActivity2)getActivity()).showEq();
                 break;
             case R.id.main_panel_woofer_container:
-                ((MainActivity2)getActivity()).onSettings();
+                ((MainActivity2)getActivity()).showSettings();
                 break;
             default:break;
         }
@@ -222,13 +261,13 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
 
     private void selectInputSource() {
         if(!supportSource() || mBaseInfo==null || mBaseInfo.mAutoRouting==null) return;
-        A2dpDlg dlg = new A2dpDlg(getActivity(), mProfile);
-        dlg.show(mSourceButton,new Runnable(){
+        A2dpDlg dlg = new A2dpDlg((MainActivity2)getActivity(), mProfile);
+        dlg.show(new Runnable(){
             @Override
             public void run() {
-                initBarPanel();
+                refreshBarPanel(1000);
             }
-        });
+        }, false);
     }
 
     private void connectWoofer() {
@@ -275,9 +314,6 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
         }.execute();
     }
 
-    private void loadSourceInfo() {
-    }
-
     private void loadEqStyle() {
         EQManager manager = new EQManager();
         EQStyle style = manager.readSoundBarStyle(getActivity());
@@ -303,6 +339,7 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
         String tmpStr = null;
         try {
             String data = mibar.querySystemTraceInfo();
+            SoundBarORM.addSetting(getActivity(), "traceInfo", data);
             Log.logD("0x816: " + data);
             JSONObject o = new JSONObject(data);
             tmpStr = o.getString("raw");
@@ -340,14 +377,12 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
                     mSoundbarVol.setProgress(soundBarVol);
                     mSoundbarVol.setEnabled(true);
                     mSoundBarVolController = new SoundBarVolumeSet(soundBarVol);
-                    ((View)findViewById(R.id.main_panel_vol_wave_static)).setVisibility(View.GONE);
-                    ((View)findViewById(R.id.main_panel_vol_wave)).setVisibility(View.VISIBLE);
+                    showVolWaveImg(true, soundBarVol);
                 } else {
                     mSoundbarVol.setProgress(0);
                     mSoundbarVol.setEnabled(false);
                     mSoundbarVol.setThumbDrawableResource(R.drawable.home_page_button_xiaomisound_standard_unavailable);
-                    ((View)findViewById(R.id.main_panel_vol_wave_static)).setVisibility(View.VISIBLE);
-                    ((View)findViewById(R.id.main_panel_vol_wave)).setVisibility(View.GONE);
+                    showVolWaveImg(false, 0);
                 }
                 if (mBaseInfo.mAutoRouting.woofer_ready) {
                     mWooferInfo.setOnClickListener(null);
@@ -367,6 +402,23 @@ public class PanelFragment extends BaseFragment implements View.OnClickListener{
                 mSafetyMode.setVisibility(mBaseInfo.mSoundBar.safety_mode?View.VISIBLE:View.GONE);
             }
         });
+    }
+
+    private void showVolWaveImg(boolean haveInput, int vol){
+        if(haveInput){
+            if(vol==0){ //slient
+                mStaticVolumeImageView.setImageResource(R.drawable.home_icon_slient);
+                mStaticVolumeImageView.setVisibility(View.VISIBLE);
+                mVolumeImageView.setVisibility(View.GONE);
+            }else{
+                mStaticVolumeImageView.setVisibility(View.GONE);
+                mVolumeImageView.setVisibility(View.VISIBLE);
+            }
+        }else{
+            mStaticVolumeImageView.setImageResource(R.drawable.home_page_pic_xiaomisound_audio);
+            mStaticVolumeImageView.setVisibility(View.VISIBLE);
+            mVolumeImageView.setVisibility(View.GONE);
+        }
     }
 
     private class SoundBarVolumeSet implements Runnable {

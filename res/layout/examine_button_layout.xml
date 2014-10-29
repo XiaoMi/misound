@@ -2,9 +2,10 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:background="@color/white">
-    <View style="@style/SettingItemSpace"
-          android:layout_alignParentTop="true"/>
+        android:layout_height="wrap_content"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:background="@drawable/diagnosis_list_item_bg">
     <TextView android:id="@android:id/text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -12,7 +13,7 @@
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:textSize="@dimen/text_size_xh_28px"
-            android:textColor="@color/darker_gray_6c"
+            android:textColor="@color/font_black_normal"
             android:layout_alignParentLeft="true"
             android:text="New Button"/>
     <ImageView

@@ -1,10 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="eq_style_names">
-        <item>自定义</item>
-        <item>标准</item>
-        <item>强劲</item>
-        <item>清晰</item>
-        <item>柔和</item>
-    </string-array>
 </resources>

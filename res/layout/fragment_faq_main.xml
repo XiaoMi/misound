@@ -7,17 +7,18 @@
               android:background="@color/white">
     <include android:id="@id/actionbar" layout="@layout/actioin_bar"/>
     <FrameLayout android:layout_width="match_parent"
-                 android:layout_height="match_parent">
+                 android:layout_height="match_parent"
+                 android:background="#f6f6f6">
         <LinearLayout
                 android:id="@+id/qa_index_view"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="13dp"
-                android:layout_marginRight="13dp"
                 android:orientation="vertical">
             <ListView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0.5dp"
                     android:id="@+id/qa_item_list"/>
 
         </LinearLayout>
@@ -30,9 +31,7 @@
                 android:visibility="gone">
             <WebView android:id="@+id/qa_content"
                       android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:layout_weight="1"
-                    />
+                      android:layout_height="match_parent"/>
         </LinearLayout>
 
     </FrameLayout>

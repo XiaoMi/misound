@@ -4,31 +4,21 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="navigation_drawer_width">240dp</dimen>
 
-    <dimen name="setting_item_height">48dp</dimen>
-    <dimen name="setting_category_title_size">16sp</dimen>
-    <dimen name="setting_item_title_size">@dimen/text_size_xh_24px</dimen>
-    <dimen name="setting_summary_size">@dimen/text_size_xh_24px</dimen>
+    <dimen name="setting_item_title_size">@dimen/text_size_xh_28px</dimen>
+    <dimen name="setting_summary_size">@dimen/text_size_xh_28px</dimen>
 
     <dimen name="bottom_single_button_height">41dp</dimen>
     <dimen name="bottom_single_button_width">240dp</dimen>
     <dimen name="connecting_animation_height">480dp</dimen>
-    <dimen name="connecting_box_width">50dp</dimen>
-    <dimen name="connecting_box_height">75dp</dimen>
 
     <dimen name="text_size_xh_28px">14sp</dimen>
+    <dimen name="text_size_xh_32px">16sp</dimen>
     <dimen name="text_size_xh_24px">12sp</dimen>
-    <dimen name="text_size_xh_40px">20sp</dimen>
+    <dimen name="text_size_xh_54px">27sp</dimen>
     <dimen name="text_size_xh_75px">38sp</dimen>
 
-    <dimen name="main_entry_item_width">106dp</dimen>
-    <dimen name="main_entry_top">27dp</dimen>
-    <dimen name="main_entry_padding_left_right">52dp</dimen>
-    <dimen name="main_entry_padding_top">27dp</dimen>
-    <dimen name="main_entry_item_gap_h">89dp</dimen>
-    <dimen name="main_entry_item_gap_v">26dp</dimen>
-    <dimen name="main_entry_text_padding">10dp</dimen>
+    <dimen name="main_entry_text_padding">8dp</dimen>
 
     <dimen name="main_panel_height">320dp</dimen>
     <dimen name="main_panel_padding_l_r">14dp</dimen>

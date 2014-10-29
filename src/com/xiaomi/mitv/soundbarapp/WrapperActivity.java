@@ -6,8 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import com.umeng.analytics.MobclickAgent;
 import com.xiaomi.mitv.idata.client.app.AppData;
 import com.xiaomi.mitv.idata.util.Counter;
 import com.xiaomi.mitv.soundbarapp.diagnosis.DiagnosisFragment;
@@ -17,6 +17,7 @@ import com.xiaomi.mitv.soundbarapp.eq.EQSettingsFragment;
 import com.xiaomi.mitv.soundbarapp.fragment.BaseFragment;
 import com.xiaomi.mitv.soundbarapp.fragment.FeedbackFragment;
 import com.xiaomi.mitv.soundbarapp.fragment.SettingsFragment;
+import com.xiaomi.mitv.soundbarapp.player.PlayListFragment;
 
 /**
  * Created by chenxuetong on 8/21/14.
@@ -29,6 +30,7 @@ public class WrapperActivity extends FragmentActivity {
     public static final String FRAGMENT_FEEDBACK = "feedback";
     public static final String FRAGMENT_DIAGNOSIS = "diagnosis";
     public static final String FRAGMENT_USER_EQ = "user_eq";
+    public static final String FRAGMENT_PLAYLIST = "play_list";
 
     private BaseFragment mFragement;
 
@@ -51,8 +53,8 @@ public class WrapperActivity extends FragmentActivity {
         if(i != null){
             String fragment = i.getStringExtra("fragment");
             if(FRAGMENT_SETTINGS.equals(fragment)){
-                boolean sourceReday = i.getBooleanExtra("have_source", true);
-                onSettings(sourceReday);
+                boolean sourceReaday = i.getBooleanExtra("have_source", true);
+                onSettings(sourceReaday);
             }
             if(FRAGMENT_FAQ.equals(fragment)){
                 onFaq();
@@ -69,14 +71,35 @@ public class WrapperActivity extends FragmentActivity {
             if(FRAGMENT_USER_EQ.equals(fragment)){
                 onUserEQ();
             }
+            if(FRAGMENT_PLAYLIST.equals(fragment)){
+                onPlayList();
+            }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onResume(this);
+    }
+
+    private void onPlayList() {
+        mFragement = PlayListFragment.newInstance();
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, mFragement, FRAGMENT_PLAYLIST)
+                .commitAllowingStateLoss();
     }
 
     private void onUserEQ() {
         mFragement = UserEQControlFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
-                .add(android.R.id.content, mFragement, FRAGMENT_USER_EQ)
-                .addToBackStack(null)
+                .add(android.R.id.content, mFragement, FRAGMENT_UPGRADE)
                 .commitAllowingStateLoss();
     }
 
@@ -92,7 +115,6 @@ public class WrapperActivity extends FragmentActivity {
         mFragement = EQSettingsFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .add(android.R.id.content, mFragement, FRAGMENT_EQ)
-                .addToBackStack(null)
                 .commitAllowingStateLoss();
         reportFeatureAccess(FRAGMENT_EQ);
     }
@@ -103,7 +125,6 @@ public class WrapperActivity extends FragmentActivity {
         mFragement = sf;
         getSupportFragmentManager().beginTransaction()
                 .add(android.R.id.content, mFragement, FRAGMENT_SETTINGS)
-                .addToBackStack(null)
                 .commitAllowingStateLoss();
         reportFeatureAccess(FRAGMENT_SETTINGS);
     }
@@ -113,7 +134,6 @@ public class WrapperActivity extends FragmentActivity {
         mFragement = FaqFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .add(android.R.id.content, mFragement, FRAGMENT_FAQ)
-                .addToBackStack(null)
                 .commitAllowingStateLoss();
         reportFeatureAccess(FRAGMENT_FAQ);
     }
@@ -139,7 +159,6 @@ public class WrapperActivity extends FragmentActivity {
 
         mFragement = DiagnosisFragment.newInstance(listener);
         getSupportFragmentManager().beginTransaction()
-                .addToBackStack(null)
                 .add(android.R.id.content, mFragement, FRAGMENT_DIAGNOSIS)
                 .commitAllowingStateLoss();
         reportFeatureAccess(FRAGMENT_DIAGNOSIS);
@@ -149,7 +168,6 @@ public class WrapperActivity extends FragmentActivity {
         mFragement = FeedbackFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .add(android.R.id.content, mFragement, FRAGMENT_FEEDBACK)
-                .addToBackStack(null)
                 .commitAllowingStateLoss();
         reportFeatureAccess(FRAGMENT_FEEDBACK);
     }

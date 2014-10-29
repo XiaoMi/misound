@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <TextView android:id="@+id/playlist_headerLetter"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="0dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/local_music_letter_bg"
+            android:textSize="@dimen/text_size_xh_32px"
+            android:textColor="@color/font_gray_normal"
+            android:visibility="gone"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="14dp">
+        <RelativeLayout android:layout_width="53dp" android:layout_height="53dp"
+                        android:padding="0.5dp"
+                        android:background="@drawable/list_music_cover_bg">
+            <ImageView android:id="@+id/playlist_alum_logo"
+                       android:maxHeight="52.5dp"
+                       android:maxWidth="52.5dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:scaleType="centerInside"
+                       android:layout_centerInParent="true"/>
+        </RelativeLayout>
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical"
+                      android:layout_marginLeft="13dp"
+                      android:gravity="center_vertical">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                <TextView android:id="@+id/playlist_trace_name"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:ellipsize="end"
+                      android:singleLine="true"
+                      android:textSize="@dimen/text_size_xh_28px"
+                      android:textColor="@color/font_black_normal"/>
+                <ImageView android:id="@+id/playlist_playing_flag"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:src="@drawable/icon_music_list_play"/>
+            </LinearLayout>
+            <TextView android:id="@+id/playlist_artist"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:ellipsize="end"
+                      android:singleLine="true"
+                      android:textSize="@dimen/text_size_xh_24px"
+                      android:textColor="@color/font_gray_normal"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

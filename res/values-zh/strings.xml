@@ -4,8 +4,6 @@
     <string name="app_name">小米音响</string>
 
     <string name="dfu_version">3.0.2.ver</string>
-    <string name="title_activity_xiaomi_soundbar">固件版本(3.0.2)</string>
-    <string name="title_main">固件版本(3.0.2)</string>
 
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
@@ -14,56 +12,22 @@
     <string name="ipc_begin_update_dfu">Service Update</string>
     <string name="show_log">Show Log</string>
     <string name="fetch_version">Fetch Version Info</string>
-    <string name="fetch_subwoofer">Fetch SubWoofer</string>
-    <string name="volume_plus">Volume+</string>
-    <string name="volume_sub">Volume-</string>
     <string name="action_soundbar">Sound Bar Test</string>
-    <string name="source_get">Current Sources</string>
-    <string name="source_get_available">Avail Sources</string>
-    <string name="source_set_available">Set Source</string>
-    <string name="clear_sb_address">Clear SoundBar address</string>
     <string name="close_connection">Close Connection</string>
-    <string name="set_volume">Set Volume</string>
-    <string name="default_volume">75</string>
-    <string name="clear_log">Clear Log</string>
 
 
 
 
-    <string name="title_effection_settings">音效设置</string>
-    <string name="title_about">关于</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
 
-    <string name="menu_local">本地更新</string>
-    <string name="button_scan">重新查找小米音响</string>
-    <string name="button_connect">连接小米音响</string>
-    <string name="button_version_check">检查版本</string>
-    <string name="button_version_upgrade">升级小米音响</string>
 
-    <string name="splash_title">小米音响</string>
-    <string name="connect_title">连接小米音响</string>
-    <string name="connect_ok">小米音响连接成功</string>
-    <string name="connect_failed">小米音响连接失败</string>
-    <string name="title_activity_connect_bar">ConnectBar</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="qa_title">常用问题列表</string>
-    <string name="qa_loading">载入数据中</string>
     <string name="qa_loading_failure">读取帮助信息失败</string>
     
-    <string name="setting_sound_control">小米音响参数</string>
     <string name="setting_private_mode_title">私人模式</string>
     <string name="setting_private_mode_summary">不允许陌生设备连接</string>
-    <string name="connect_failure">扫描小米音响失败</string>
-    <string name="scan_suc_with_version">连接到小米音响\n地址:%1$s\n版本号:%2$s</string>
-    <string name="portal_upgrade">软件升级</string>
-    <string name="portal_help">常见问题</string>
 
-    <string name="feedback">意见反馈</string>
     <string name="menu_feedback">意见反馈</string>
 
 </resources>

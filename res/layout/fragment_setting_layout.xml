@@ -3,7 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="@color/white">
+             android:background="@color/bg_color">
     <include android:id="@+id/actionbar" layout="@layout/actioin_bar"/>
     <LinearLayout
             android:orientation="vertical"
@@ -28,13 +28,22 @@
                       android:layout_marginBottom="6dp"
                       android:visibility="gone"
                       style="@style/SettingItemSummary"/>
-            <SeekBar android:id="@+id/woofer_seek"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_marginBottom="20dp"
-                     android:max="31"
-                     android:layout_marginLeft="-5dp"
-                     style="@style/wooferVolBar"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
+                <TextView android:id="@+id/woofer_seek_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/font_gray_normal"
+                        android:textSize="@dimen/text_size_xh_28px"
+                        android:text="0%"/>
+                <SeekBar android:id="@+id/woofer_seek"
+                         android:layout_width="0dp" android:layout_weight="1"
+                         android:layout_height="wrap_content"
+                         android:max="31"
+                         style="@style/wooferVolBar"/>
+            </LinearLayout>
         </LinearLayout>
         <View style="@style/SettingItemSpace"/>
         <LinearLayout
@@ -113,7 +122,7 @@
                 android:gravity="center_vertical"
                 style="@style/SettingItem">
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/setting_master_reset_title"
                     android:gravity="center_vertical"
@@ -123,7 +132,7 @@
                     android:background="@drawable/btn_setting_reset"
                     style="@style/SettingButtonItem"
                     android:textSize="@dimen/text_size_xh_24px"
-                    android:textColor="@color/black_70"
+                    android:textColor="@color/font_gray_normal"
                     android:text="@string/setting_master_reset"/>
         </LinearLayout>
         <View style="@style/SettingItemSpace"/>
@@ -132,7 +141,7 @@
                 android:gravity="center_vertical"
                 style="@style/SettingItem">
             <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/setting_deviceid_title"
                     android:gravity="center_vertical"
@@ -142,7 +151,7 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:textSize="@dimen/text_size_xh_24px"
-                      android:textColor="@color/black_70"/>
+                      android:textColor="@color/font_black_normal"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
